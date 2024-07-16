@@ -1,9 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
+import { styles } from './styles'
 
 const LoginScreen = () => {
   return (
-    <View style={{width : '100%', height : '100%', backgroundColor : 'lime'}}>
+    <View style={styles.container}>
 
     </View>
   )

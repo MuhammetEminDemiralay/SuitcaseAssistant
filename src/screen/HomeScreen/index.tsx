@@ -1,9 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
+import { styles } from './styles'
 
 const HomeScreen = () => {
   return (
-   <View style={{width : '100%', height : '100%', backgroundColor : 'skyblue'}}>
+   <View style={styles.container}>
 
    </View>
   )
