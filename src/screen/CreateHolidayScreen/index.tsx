@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { Dimensions, FlatList, Image, LayoutChangeEvent, Pressable, Text, View } from 'react-native'
+import { Dimensions, FlatList, GestureResponderEvent, Image, LayoutChangeEvent, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
-import { FontAwesome, MaterialIcons, Foundation, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons, Foundation, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
 import { DateTimePickerAndroid, DateTimePickerEvent } from '@react-native-community/datetimepicker'
 import { holidayCategory } from '../../datas/holidayCategıory';
 import CountryFlag from "react-native-country-flag";
@@ -13,13 +13,45 @@ const { width, height } = Dimensions.get("window");
 
 const CreateHolidayScreen = () => {
 
+
+  // GENDER
+
   const genders = ["male", "female", 'couple', "family"]
   const [gender, setGender] = useState("male");
+  const [genderIndex, setGenderIndex] = useState(0)
+  const genderFlatlistRef = useRef<any>();
 
-  const onViewRef = useRef((viewableItems: any) => {
+  const genderOnViewRef = useRef((viewableItems: any) => {
     setGender(viewableItems.viewableItems[0].item)
+    setGenderIndex(viewableItems.viewableItems[0].index)
   })
-  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
+
+  const genderViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
+
+  const previousGenderItem = () => {
+    if (genderIndex != 0) {
+      let targetIndex = genderIndex - 1
+      genderFlatlistRef.current.scrollToIndex({ index: targetIndex, animated: true })
+    }
+    if (genderIndex == 0) {
+      let targetIndex = ((genders.length) - 1)
+      genderFlatlistRef.current.scrollToIndex({ index: targetIndex, animated: true })
+    }
+  }
+
+  const nextGenderItem = () => {
+    const lastIndex = ((genders.length) - 1)
+    if (genderIndex != lastIndex) {
+      let targetIndex = genderIndex + 1
+      genderFlatlistRef.current.scrollToIndex({ index: targetIndex, animated: true })
+    }
+    if (genderIndex == ((genders.length) - 1)) {
+      genderFlatlistRef.current.scrollToIndex({ index: 0, animated: true })
+    }
+  }
+
+
+  // DATE
 
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
@@ -49,36 +81,85 @@ const CreateHolidayScreen = () => {
 
 
 
-  const [value, setValue] = useState(null);
-  const dropDownChange = () => {
+  // COUNTRY
 
+  const [value, setValue] = useState(null);
+  const [flagCode, setFlagCode] = useState<string>("TR")
+
+  const countryDropDownChange = (event: any) => {
+    setFlagCode(event.code)
+  }
+
+  const cityDropDownChange = () => {
+
+  }
+
+
+  // TRAVEL
+
+  const [travel, setTravel] = useState<any>("Sea")
+  const [travelIndex, setTravelIndex] = useState(0);
+  const travelFlatListRef = useRef<any>();
+  const travelOnViewRef = useRef((viewableItems: any) => {
+    setTravel(viewableItems.viewableItems[0].item)
+    setTravelIndex(viewableItems.viewableItems[0].index)
+  })
+  const travelViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
+
+  const travelPreviousItem = () => {
+    if (travelIndex != 0) {
+      let targetIndex = travelIndex - 1
+      travelFlatListRef.current.scrollToIndex({ index: targetIndex, animated: true })
+    }
+    if (travelIndex == 0) {
+      let targetIndex = ((holidayCategory.length) - 1)
+      travelFlatListRef.current.scrollToIndex({ index: targetIndex, animated: true })
+    }
+  }
+
+  const travelNextItem = () => {
+    const lastIndex = ((holidayCategory.length) - 1)
+    if (travelIndex != lastIndex) {
+      let targetIndex = travelIndex + 1
+      travelFlatListRef.current.scrollToIndex({ index: targetIndex, animated: true })
+    }
+    if (travelIndex == ((holidayCategory.length) - 1)) {
+      travelFlatListRef.current.scrollToIndex({ index: 0, animated: true })
+    }
   }
 
 
 
   return (
     <View style={styles.container}>
+
+      {/* <View style={{ width: width * 0.9, height: height * 0.8, borderWidth: 1, backgroundColor: 'red', position: 'absolute', marginTop: height * 0.1, opacity: 0.2 }}></View> */}
+
       {/* gender */}
       <View style={styles.genderContainer}>
+        <Pressable onPress={() => previousGenderItem()} style={[{ left: 0 }, styles.genderIcon]} >
+          <FontAwesome name="angle-left" size={24} color="black" />
+        </Pressable>
         <FlatList
           data={genders}
+          ref={genderFlatlistRef}
           renderItem={({ item, index }) => (
             <View style={styles.genderBox}>
               {
                 item == 'male' &&
-                <FontAwesome name="male" size={50} color="black" />
+                <FontAwesome name="male" size={45} color="#fff" />
               }
               {
                 item == 'female' &&
-                <FontAwesome name="female" size={50} color="black" />
+                <FontAwesome name="female" size={45} color="#fff" />
               }
               {
                 item == 'couple' &&
-                <Foundation name="male-female" size={50} color="black" />
+                <Foundation name="male-female" size={55} color="#fff" />
               }
               {
                 item == 'family' &&
-                <MaterialIcons name="family-restroom" size={50} color="black" />
+                <MaterialIcons name="family-restroom" size={55} color="#fff" />
               }
             </View>
           )}
@@ -87,11 +168,15 @@ const CreateHolidayScreen = () => {
           showsHorizontalScrollIndicator={false}
           snapToInterval={width * 0.40}
           decelerationRate={'fast'}
-          onViewableItemsChanged={onViewRef.current}
-          viewabilityConfig={viewConfigRef.current}
+          onViewableItemsChanged={genderOnViewRef.current}
+          viewabilityConfig={genderViewConfigRef.current}
         />
-        <Text>{gender}</Text>
+        <Pressable style={[{ right: 0 }, styles.genderIcon]} onPress={() => nextGenderItem()}>
+          <FontAwesome name="angle-right" size={24} color="black" />
+        </Pressable>
+        <Text style={styles.genderText}>{gender}</Text>
       </View>
+
 
 
       {/* date */}
@@ -102,9 +187,9 @@ const CreateHolidayScreen = () => {
             <FontAwesome
               onPress={() => start()}
               style={styles.dateIcon}
-              name="calendar-o"
-              size={width * 0.12}
-              color="#fff"
+              name={startDate == null ? 'calendar-plus-o' : 'calendar-check-o'}
+              size={width * 0.10}
+              color='#fff'
               onLayout={(event) => layoutDateIcon(event)}
             />
           </View>
@@ -113,11 +198,11 @@ const CreateHolidayScreen = () => {
             <View style={[{ width: (width * 0.6) - iconWidth }, styles.dateScreen]}>
               {
                 startDate == undefined &&
-                <Text>Start</Text>
+                <Text style={styles.dateText}>Start</Text>
               }
               {
                 startDate != undefined &&
-                <Text style={styles.dateText}>{startDate?.getDate()} {startDate.getMonth() + 1} {startDate.getFullYear()}</Text>
+                <Text style={styles.dateText}>{(startDate.getDate()) < 10 && 0}{startDate?.getDate()}  {(startDate.getMonth() + 1) < 10 && 0}{startDate.getMonth() + 1}  {startDate.getFullYear()}</Text>
               }
             </View>
           }
@@ -125,12 +210,12 @@ const CreateHolidayScreen = () => {
 
         <View style={styles.dateBox}>
           <View style={styles.iconBox}>
-            <FontAwesome 
+            <FontAwesome
               onPress={() => end()}
               style={styles.dateIcon}
-              name="calendar-o"
-              size={width * 0.12}
-              color="#fff"
+              name={endDate == null ? 'calendar-plus-o' : 'calendar-check-o'}
+              size={width * 0.1}
+              color='#fff'
             />
           </View>
           {
@@ -138,11 +223,11 @@ const CreateHolidayScreen = () => {
             <View style={[{}, styles.dateScreen]}>
               {
                 endDate == undefined &&
-                <Text>End</Text>
+                <Text style={styles.dateText}>End</Text>
               }
               {
                 endDate != undefined &&
-                <Text style={styles.dateText}>{endDate?.getDate()} {endDate.getMonth() + 1} {endDate.getFullYear()}</Text>
+                <Text style={styles.dateText}>{(endDate.getDate()) < 10 && 0}{endDate?.getDate()}  {(endDate.getMonth() + 1) < 10 && 0}{endDate.getMonth() + 1 + " "} {endDate.getFullYear()}</Text>
               }
             </View>
           }
@@ -156,22 +241,27 @@ const CreateHolidayScreen = () => {
       <View style={styles.countryContainer}>
 
         <View style={styles.countryBox}>
-            <CountryFlag style={styles.flag} isoCode='TR' size={25} />
-            <Dropdown
-              style={styles.dropdown}
-              containerStyle={styles.dropdownContainer}
-              search
-              data={countryDatas}
-              onChange={() => dropDownChange()}
-              labelField="name"
-              valueField="name"
-              value={value}
-              mode='modal'
-              placeholder=''
-              renderRightIcon={() => (
-                <MaterialCommunityIcons name="menu-down" size={30} color="black" />
-              )}
-            />
+          <CountryFlag style={styles.flag} isoCode={flagCode} size={25} />
+          <Dropdown
+            style={styles.dropdown}
+            containerStyle={styles.dropdownContainer}
+            search
+            data={countryDatas}
+            onChange={(event: any) => countryDropDownChange(event)}
+            labelField="name"
+            valueField="name"
+            value={value}
+            mode='modal'
+            placeholder='Country'
+            searchPlaceholder='search ...'
+            placeholderStyle={styles.placeHolderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            itemContainerStyle={styles.itemContainerStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            renderRightIcon={() => (
+              <MaterialCommunityIcons name="menu-down" size={30} color="black" />
+            )}
+          />
         </View>
 
         <View style={styles.cityBox}>
@@ -183,12 +273,17 @@ const CreateHolidayScreen = () => {
             containerStyle={styles.dropdownContainer}
             search
             data={countryDatas}
-            onChange={() => dropDownChange()}
+            onChange={(event: any) => cityDropDownChange()}
             labelField="name"
             valueField="name"
             value={value}
             mode='modal'
             placeholder='City'
+            searchPlaceholder='search ...'
+            placeholderStyle={styles.placeHolderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            itemContainerStyle={styles.itemContainerStyle}
+            inputSearchStyle={styles.inputSearchStyle}
             renderRightIcon={() => (
               <MaterialCommunityIcons name="menu-down" size={30} color="black" />
             )}
@@ -200,10 +295,18 @@ const CreateHolidayScreen = () => {
 
       {/* travel type*/}
       <View style={styles.travelTypeContainer}>
+        <View style={styles.travelTextBox}>
+          <Text style={styles.travelText}>{travel.item}</Text>
+        </View>
+        <Pressable onPress={() => travelPreviousItem()} style={[{ left: 10 }, styles.carouselBtn]}>
+          <FontAwesome style={styles.carouselIcon} name="angle-left" size={24} color="black" />
+        </Pressable>
         <FlatList
+          ref={travelFlatListRef}
           data={holidayCategory}
           renderItem={({ item, index }) => (
             <Image
+              key={index}
               style={styles.holidayCategoryImage}
               source={
                 item.id == 1 ? require("../../datas/holidayCategoryImage/1.jpg") :
@@ -217,13 +320,22 @@ const CreateHolidayScreen = () => {
           )}
           showsHorizontalScrollIndicator={false}
           horizontal
-          snapToInterval={width * 1}
+          snapToInterval={width * 0.9}
+          onViewableItemsChanged={travelOnViewRef.current}
+          viewabilityConfig={travelViewConfigRef.current}
         />
+        <Pressable onPress={() => travelNextItem()} style={[{ right: 10 }, styles.carouselBtn]}>
+          <FontAwesome style={styles.carouselIcon} name="angle-right" size={24} color="black" />
+        </Pressable>
       </View>
 
-      <Pressable style={styles.confirmBtn}>
 
-      </Pressable>
+
+      <View style={styles.confirmBox}>
+        <Pressable style={styles.confirmBtn}>
+          <Text style={styles.confirmText}>Create</Text>
+        </Pressable>
+      </View>
 
 
 
