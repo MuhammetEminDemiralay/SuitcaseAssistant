@@ -3,10 +3,10 @@ import { Dimensions, FlatList, GestureResponderEvent, Image, LayoutChangeEvent, 
 import { styles } from './styles'
 import { FontAwesome, MaterialIcons, Foundation, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
 import { DateTimePickerAndroid, DateTimePickerEvent } from '@react-native-community/datetimepicker'
-import { holidayCategory } from '../../datas/holidayCategıory';
 import CountryFlag from "react-native-country-flag";
 import { Dropdown } from 'react-native-element-dropdown';
 import { countryDatas } from '../../datas/countryData';
+import { holidayCategory } from '../../datas/holidayCategory';
 
 
 const { width, height } = Dimensions.get("window");
@@ -85,12 +85,14 @@ const CreateHolidayScreen = () => {
 
   const [value, setValue] = useState(null);
   const [flagCode, setFlagCode] = useState<string>("TR")
+  const [targetCitys, setTargetCitys] = useState<[]>([]);
 
   const countryDropDownChange = (event: any) => {
     setFlagCode(event.code)
   }
 
-  const cityDropDownChange = () => {
+  const cityDropDownChange = (event: any) => {
+    console.log("City", event);
 
   }
 
@@ -167,7 +169,7 @@ const CreateHolidayScreen = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           snapToInterval={width * 0.40}
-          decelerationRate={'fast'}
+          decelerationRate={'normal'}
           onViewableItemsChanged={genderOnViewRef.current}
           viewabilityConfig={genderViewConfigRef.current}
         />
@@ -273,7 +275,7 @@ const CreateHolidayScreen = () => {
             containerStyle={styles.dropdownContainer}
             search
             data={countryDatas}
-            onChange={(event: any) => cityDropDownChange()}
+            onChange={(event: any) => cityDropDownChange(event)}
             labelField="name"
             valueField="name"
             value={value}
@@ -320,6 +322,7 @@ const CreateHolidayScreen = () => {
           )}
           showsHorizontalScrollIndicator={false}
           horizontal
+          decelerationRate={'normal'}
           snapToInterval={width * 0.9}
           onViewableItemsChanged={travelOnViewRef.current}
           viewabilityConfig={travelViewConfigRef.current}

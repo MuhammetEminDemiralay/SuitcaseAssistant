@@ -14,7 +14,7 @@ const UserStack = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveBackgroundColor: 'red',
+        tabBarActiveBackgroundColor: '#02c39a',
         tabBarStyle: { height: height * 0.075 }
       }}
     >
@@ -23,7 +23,7 @@ const UserStack = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: () => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={30} color="black" />
           )
         }}
       />
@@ -32,7 +32,7 @@ const UserStack = () => {
         component={CreateHolidayScreen}
         options={{
           tabBarIcon: () => (
-            <FontAwesome name="table" size={24} color="black" />
+            <FontAwesome name="table" size={30} color="black" />
           )
         }}
       />

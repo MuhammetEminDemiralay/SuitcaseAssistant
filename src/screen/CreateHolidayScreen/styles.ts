@@ -237,8 +237,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 6,
-        borderWidth: 2,
-        borderColor: '#fff',
         opacity: 0.75,
         elevation: 5
     },
