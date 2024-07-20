@@ -4,7 +4,7 @@ import travelSlice from "./travelSlice";
 
  const store = configureStore({
     reducer : {
-        travelSlice : travelSlice
+        travel : travelSlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
 })

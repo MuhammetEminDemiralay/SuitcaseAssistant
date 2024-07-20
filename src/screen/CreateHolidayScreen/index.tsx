@@ -7,11 +7,16 @@ import CountryFlag from "react-native-country-flag";
 import { Dropdown } from 'react-native-element-dropdown';
 import { countryDatas } from '../../datas/countryData';
 import { holidayCategory } from '../../datas/holidayCategory';
+import { useDispatch } from 'react-redux';
+import { setSuitcaseInfo } from '../../redux/travelSlice';
 
 
 const { width, height } = Dimensions.get("window");
 
 const CreateHolidayScreen = () => {
+
+  const dispatch: any = useDispatch()
+
 
 
   // GENDER
@@ -130,6 +135,18 @@ const CreateHolidayScreen = () => {
     }
   }
 
+
+
+
+  const create = () => {
+    console.log("Gender", gender);
+    console.log("Start date", startDate);
+    console.log("End date", endDate);
+    console.log("Travel", travel.item);
+    if ((gender && startDate && endDate && travel) != null) {
+      dispatch(setSuitcaseInfo({ gender: gender, startDate: startDate, endDate: endDate, travelType: travel }))
+    }
+  }
 
 
   return (
@@ -335,7 +352,7 @@ const CreateHolidayScreen = () => {
 
 
       <View style={styles.confirmBox}>
-        <Pressable style={styles.confirmBtn}>
+        <Pressable onPress={() => create()} style={styles.confirmBtn}>
           <Text style={styles.confirmText}>Create</Text>
         </Pressable>
       </View>
