@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     currentTravelContainer: {
         width: '100%',
         height: height * 0.1,
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
         borderTopRightRadius: 50,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
         width: width * 0.9,
         height: height * 0.1,
         marginTop: height * 0.025,
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center'
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
         width: width * 0.9,
         height: height * 0.3,
         marginTop: height * 0.025,
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center'

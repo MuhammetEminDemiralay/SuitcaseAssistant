@@ -7,1059 +7,706 @@ export const suitcaseDatas: DynamicObject = {
 
     male: {
         sea: {
-            clothing: {
-                upper_wear: [
-                    "Swim trunks",
-                    "T-shirts",
-                    "Colorful shirts"
-                ],
-                lower_wear: [
-                    "Shorts",
-                    "Swim shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Hat",
-                    "Light jacket"
-                ],
-                accessories: [
-                    "Sunglasses",
-                    "Beach bag"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy drinks",
-                "Sunscreen"
+            clothing: [
+                { item: "Swim trunks", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Colorful shirts", check: false },
+                { item: "Shorts", check: false },
+                { item: "Swim shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Hat", check: false },
+                { item: "Light jacket", check: false },
+                { item: "Sunglasses", check: false },
+                { item: "Beach bag", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Sunscreen",
-                    "Moisturizer"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false },
+                { item: "Sunscreen", check: false }
+            ],
+            personal_care: [
+                { item: "Sunscreen", check: false },
+                { item: "Moisturizer", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Beach games",
-            //     "Book",
-            //     "Music player"
-            // ],
             documents: [
-                "ID",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Sunglasses",
-                "Hat",
-                "Beach towel",
-                "Waterproof phone case"
+                { item: "Sunglasses", check: false },
+                { item: "Hat", check: false },
+                { item: "Beach towel", check: false },
+                { item: "Waterproof phone case", check: false }
             ]
         },
         nature: {
-            clothing: {
-                upper_wear: [
-                    "Thermal base layers",
-                    "Fleece jacket",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Hiking pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Hiking pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         culture_and_history: {
-            clothing: {
-                upper_wear: [
-                    "Casual shirts",
-                    "T-shirts",
-                    "Smart jacket"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Smart coat",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Local snacks",
-                "Water bottle",
-                "Energy drinks"
+            clothing: [
+                { item: "Casual shirts", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Smart jacket", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Local snacks", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         city: {
-            clothing: {
-                upper_wear: [
-                    "T-shirts",
-                    "Shirts",
-                    "Smart jackets"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Raincoat",
-                    "Smart coat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Cafe or restaurant meals",
-                "Snacks"
+            clothing: [
+                { item: "T-shirts", check: false },
+                { item: "Shirts", check: false },
+                { item: "Smart jackets", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Cafe or restaurant meals", check: false },
+                { item: "Snacks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         camp: {
-            clothing: {
-                upper_wear: [
-                    "Fleece jacket",
-                    "Thermal base layers",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Camping pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Fleece jacket", check: false },
+                { item: "Thermal base layers", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Camping pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         ski: {
-            clothing: {
-                upper_wear: [
-                    "Ski jacket",
-                    "Thermal base layers",
-                    "Fleece jacket"
-                ],
-                lower_wear: [
-                    "Ski pants",
-                    "Thermal leggings"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof gloves",
-                    "Ski hat"
-                ],
-                accessories: [
-                    "Ski goggles",
-                    "Neck gaiter",
-                    "Ski socks"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy bars",
-                "Hot drinks"
+            clothing: [
+                { item: "Ski jacket", check: false },
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Ski pants", check: false },
+                { item: "Thermal leggings", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof gloves", check: false },
+                { item: "Ski hat", check: false },
+                { item: "Ski goggles", check: false },
+                { item: "Neck gaiter", check: false },
+                { item: "Ski socks", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy bars", check: false },
+                { item: "Hot drinks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GoPro"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GoPro", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Cold remedies"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Cold remedies", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Ski pass",
-            //     "Skiing gear",
-            //     "Book"
-            // ],
             documents: [
-                "ID and passport",
-                "Ski pass",
-                "Hotel reservation details"
+                { item: "ID and passport", check: false },
+                { item: "Ski pass", check: false },
+                { item: "Hotel reservation details", check: false }
             ],
             equipment: [
-                "Ski equipment",
-                "Ski poles",
-                "Helmet",
-                "Ski boots"
+                { item: "Ski equipment", check: false },
+                { item: "Ski poles", check: false },
+                { item: "Helmet", check: false },
+                { item: "Ski boots", check: false }
             ]
         },
-        honeymoon: {
-            clothing: {
-                upper_wear: [
-                    "Dress shirts",
-                    "Casual shirts",
-                    "Evening wear"
-                ],
-                lower_wear: [
-                    "Dress pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Smart jacket",
-                    "Light coat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Local snacks",
-                "Wine or champagne",
-                "Romantic dinners"
-            ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
-            electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
-            ],
-            health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
-            ],
-            // entertainment_and_activities: [
-            //     "Romantic games",
-            //     "Music player",
-            //     "Local guidebook"
-            // ],
-            documents: [
-                "ID and passport",
-                "Travel itinerary",
-                "Hotel reservation details"
-            ],
-            equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
-            ]
-        }
     },
 
 
     female: {
         sea: {
-            clothing: {
-                upper_wear: [
-                    "Swimwear",
-                    "T-shirts",
-                    "Colorful shirts",
-                    "Tank tops",
-                    "Rash guard" // Ekstra
-                ],
-                lower_wear: [
-                    "Shorts",
-                    "Swim shorts",
-                    "Beach pants" // Ekstra
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Hat",
-                    "Light jacket",
-                    "Rain poncho" // Ekstra
-                ],
-                accessories: [
-                    "Sunglasses",
-                    "Beach bag",
-                    "Beach towel", // Ekstra
-                    "Waterproof phone case" // Ekstra
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy drinks",
-                "Sunscreen",
-                "Snacks" // Ekstra
+            clothing: [
+                { item: "Swimwear", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Colorful shirts", check: false },
+                { item: "Tank tops", check: false },
+                { item: "Rash guard", check: false },
+                { item: "Shorts", check: false },
+                { item: "Swim shorts", check: false },
+                { item: "Beach pants", check: false }, // Ekstra
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Hat", check: false },
+                { item: "Light jacket", check: false },
+                { item: "Rain poncho", check: false }, // Ekstra
+                { item: "Sunglasses", check: false },
+                { item: "Beach bag", check: false },
+                { item: "Beach towel", check: false }, // Ekstra
+                { item: "Waterproof phone case", check: false } // Ekstra
             ],
-            personal_care: {
-                skin_care: [
-                    "Sunscreen",
-                    "Moisturizer",
-                    "After-sun lotion" // Ekstra
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner",
-                    "Hairbrush" // Ekstra
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant",
-                    "Wet wipes" // Ekstra
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream",
-                    "Aftershave" // Ekstra
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Snacks", check: false } // Ekstra
+            ],
+            personal_care: [
+                { item: "Sunscreen", check: false },
+                { item: "Moisturizer", check: false },
+                { item: "After-sun lotion", check: false }, // Ekstra
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Hairbrush", check: false }, // Ekstra
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Wet wipes", check: false }, // Ekstra
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false },
+                { item: "Aftershave", check: false } // Ekstra
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger",
-                "Waterproof phone case" // Ekstra
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false },
+                { item: "Waterproof phone case", check: false } // Ekstra
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Antiseptic wipes" // Ekstra
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Antiseptic wipes", check: false } // Ekstra
             ],
-            // entertainment_and_activities: [
-            //     "Beach games",
-            //     "Book",
-            //     "Music player"
-            // ],
             documents: [
-                "ID",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Sunglasses",
-                "Hat",
-                "Beach towel",
-                "Waterproof phone case"
+                { item: "Sunglasses", check: false },
+                { item: "Hat", check: false },
+                { item: "Beach towel", check: false },
+                { item: "Waterproof phone case", check: false }
             ]
         },
         nature: {
-            clothing: {
-                upper_wear: [
-                    "Thermal base layers",
-                    "Fleece jacket",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Hiking pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Hiking pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         culture_and_history: {
-            clothing: {
-                upper_wear: [
-                    "Casual shirts",
-                    "T-shirts",
-                    "Smart jacket"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Smart coat",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Local snacks",
-                "Water bottle",
-                "Energy drinks"
+            clothing: [
+                { item: "Casual shirts", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Smart jacket", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Local snacks", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         city: {
-            clothing: {
-                upper_wear: [
-                    "T-shirts",
-                    "Shirts",
-                    "Smart jackets"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Raincoat",
-                    "Smart coat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Cafe or restaurant meals",
-                "Snacks"
+            clothing: [
+                { item: "T-shirts", check: false },
+                { item: "Shirts", check: false },
+                { item: "Smart jackets", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Cafe or restaurant meals", check: false },
+                { item: "Snacks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         camp: {
-            clothing: {
-                upper_wear: [
-                    "Fleece jacket",
-                    "Thermal base layers",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Camping pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Fleece jacket", check: false },
+                { item: "Thermal base layers", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Camping pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         ski: {
-            clothing: {
-                upper_wear: [
-                    "Ski jacket",
-                    "Thermal base layers",
-                    "Fleece jacket"
-                ],
-                lower_wear: [
-                    "Ski pants",
-                    "Thermal leggings"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Ski socks"
-                ],
-                outer_wear: [
-                    "Ski gloves",
-                    "Winter hat"
-                ],
-                accessories: [
-                    "Ski goggles",
-                    "Ski helmet",
-                    "Neck gaiter"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy drinks",
-                "Snacks",
-                "Thermos"
+            clothing: [
+                { item: "Ski jacket", check: false },
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Ski pants", check: false },
+                { item: "Thermal leggings", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Ski socks", check: false },
+                { item: "Ski gloves", check: false },
+                { item: "Winter hat", check: false },
+                { item: "Ski goggles", check: false },
+                { item: "Ski helmet", check: false },
+                { item: "Neck gaiter", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Lip balm"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false },
+                { item: "Snacks", check: false },
+                { item: "Thermos", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Lip balm", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Thermal blanket"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Thermal blanket", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Ski equipment",
-            //     "Snowboard",
-            //     "Music player"
-            // ],
             documents: [
-                "ID and passport",
-                "Ski pass",
-                "Insurance documents"
+                { item: "ID and passport", check: false },
+                { item: "Ski pass", check: false },
+                { item: "Insurance documents", check: false }
             ],
             equipment: [
-                "Ski poles",
-                "Ski boots",
-                "Snow boots",
-                "Ski bag"
+                { item: "Ski poles", check: false },
+                { item: "Ski boots", check: false },
+                { item: "Snow boots", check: false },
+                { item: "Ski bag", check: false }
             ]
         }
     },
@@ -1067,504 +714,360 @@ export const suitcaseDatas: DynamicObject = {
 
     couple: {
         sea: {
-            clothing: {
-                upper_wear: [
-                    "Swimwear",
-                    "T-shirts",
-                    "Colorful shirts",
-                    "Tank tops",
-                    "Rash guard" // Ekstra
-                ],
-                lower_wear: [
-                    "Shorts",
-                    "Swim shorts",
-                    "Beach pants" // Ekstra
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Hat",
-                    "Light jacket",
-                    "Rain poncho" // Ekstra
-                ],
-                accessories: [
-                    "Sunglasses",
-                    "Beach bag",
-                    "Beach towel", // Ekstra
-                    "Waterproof phone case" // Ekstra
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy drinks",
-                "Sunscreen",
-                "Snacks" // Ekstra
+            clothing: [
+                { item: "Swimwear", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Colorful shirts", check: false },
+                { item: "Tank tops", check: false },
+                { item: "Rash guard", check: false },
+                { item: "Shorts", check: false },
+                { item: "Swim shorts", check: false },
+                { item: "Beach pants", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Hat", check: false },
+                { item: "Light jacket", check: false },
+                { item: "Rain poncho", check: false },
+                { item: "Sunglasses", check: false },
+                { item: "Beach bag", check: false },
+                { item: "Beach towel", check: false },
+                { item: "Waterproof phone case", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Sunscreen",
-                    "Moisturizer",
-                    "After-sun lotion" // Ekstra
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner",
-                    "Hairbrush" // Ekstra
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant",
-                    "Wet wipes" // Ekstra
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream",
-                    "Aftershave" // Ekstra
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Snacks", check: false }
+            ],
+            personal_care: [
+                { item: "Sunscreen", check: false },
+                { item: "Moisturizer", check: false },
+                { item: "After-sun lotion", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Hairbrush", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Wet wipes", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false },
+                { item: "Aftershave", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger",
-                "Waterproof phone case" // Ekstra
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false },
+                { item: "Waterproof phone case", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Antiseptic wipes" // Ekstra
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Antiseptic wipes", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Beach games",
-            //     "Books",
-            //     "Music player",
-            //     "Romantic games for two" // Ekstra
-            // ],
             documents: [
-                "ID",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Sunglasses",
-                "Hat",
-                "Beach towel",
-                "Waterproof phone case"
+                { item: "Sunglasses", check: false },
+                { item: "Hat", check: false },
+                { item: "Beach towel", check: false },
+                { item: "Waterproof phone case", check: false }
             ]
         },
         nature: {
-            clothing: {
-                upper_wear: [
-                    "Thermal base layers",
-                    "Fleece jacket",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Hiking pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Hiking pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player",
-            //     "Romantic camping activities" // Ekstra
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         culture_and_history: {
-            clothing: {
-                upper_wear: [
-                    "Casual shirts",
-                    "T-shirts",
-                    "Smart jackets"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Smart coat",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Local snacks",
-                "Water bottle",
-                "Energy drinks"
+            clothing: [
+                { item: "Casual shirts", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Smart jackets", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Local snacks", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player",
-            //     "Romantic city tour activities" // Ekstra
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         city: {
-            clothing: {
-                upper_wear: [
-                    "T-shirts",
-                    "Shirts",
-                    "Smart jackets"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Raincoat",
-                    "Smart coat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Cafe or restaurant meals",
-                "Snacks"
+            clothing: [
+                { item: "T-shirts", check: false },
+                { item: "Shirts", check: false },
+                { item: "Smart jackets", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Cafe or restaurant meals", check: false },
+                { item: "Snacks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player",
-            //     "Romantic city activities" // Ekstra
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         camp: {
-            clothing: {
-                upper_wear: [
-                    "Fleece jacket",
-                    "Thermal base layers",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Camping pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Fleece jacket", check: false },
+                { item: "Thermal base layers", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Camping pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player",
-            //     "Romantic camping activities" // Ekstra
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         ski: {
-            clothing: {
-                upper_wear: [
-                    "Thermal base layers",
-                    "Fleece jacket",
-                    "Waterproof jacket"
-                ],
-                lower_wear: [
-                    "Ski pants",
-                    "Thermal leggings"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Ski socks"
-                ],
-                outer_wear: [
-                    "Ski gloves",
-                    "Winter hat"
-                ],
-                accessories: [
-                    "Ski goggles",
-                    "Ski helmet",
-                    "Neck gaiter"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy drinks",
-                "Snacks",
-                "Thermos"
+            clothing: [
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Ski pants", check: false },
+                { item: "Thermal leggings", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Ski socks", check: false },
+                { item: "Ski gloves", check: false },
+                { item: "Winter hat", check: false },
+                { item: "Ski goggles", check: false },
+                { item: "Ski helmet", check: false },
+                { item: "Neck gaiter", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Lip balm"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false },
+                { item: "Snacks", check: false },
+                { item: "Thermos", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Lip balm", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Thermal blanket"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Thermal blanket", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Ski equipment",
-            //     "Snowboard",
-            //     "Music player",
-            //     "Romantic ski activities" // Ekstra
-            // ],
             documents: [
-                "ID and passport",
-                "Ski pass",
-                "Insurance documents"
+                { item: "ID and passport", check: false },
+                { item: "Ski pass", check: false },
+                { item: "Insurance documents", check: false }
             ],
             equipment: [
-                "Ski poles",
-                "Ski boots",
-                "Snow boots",
-                "Ski bag"
+                { item: "Ski poles", check: false },
+                { item: "Ski boots", check: false },
+                { item: "Snow boots", check: false },
+                { item: "Ski bag", check: false }
             ]
         }
     },
@@ -1573,504 +1076,359 @@ export const suitcaseDatas: DynamicObject = {
     family:
     {
         sea: {
-            clothing: {
-                upper_wear: [
-                    "Swimwear",
-                    "T-shirts",
-                    "Colorful shirts",
-                    "Tank tops",
-                    "Rash guard"
-                ],
-                lower_wear: [
-                    "Shorts",
-                    "Swim shorts",
-                    "Beach pants"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Hat",
-                    "Light jacket",
-                    "Rain poncho"
-                ],
-                accessories: [
-                    "Sunglasses",
-                    "Beach bag",
-                    "Beach towel",
-                    "Waterproof phone case"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy drinks",
-                "Sunscreen",
-                "Snacks"
+            clothing: [
+                { item: "Swimwear", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Colorful shirts", check: false },
+                { item: "Tank tops", check: false },
+                { item: "Rash guard", check: false },
+                { item: "Shorts", check: false },
+                { item: "Swim shorts", check: false },
+                { item: "Beach pants", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Hat", check: false },
+                { item: "Light jacket", check: false },
+                { item: "Rain poncho", check: false },
+                { item: "Sunglasses", check: false },
+                { item: "Beach bag", check: false },
+                { item: "Beach towel", check: false },
+                { item: "Waterproof phone case", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Sunscreen",
-                    "Moisturizer",
-                    "After sun lotion"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner",
-                    "Hairbrush"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant",
-                    "Wet wipes"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream",
-                    "Aftershave"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Snacks", check: false }
+            ],
+            personal_care: [
+                { item: "Sunscreen", check: false },
+                { item: "Moisturizer", check: false },
+                { item: "After sun lotion", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Hairbrush", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Wet wipes", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false },
+                { item: "Aftershave", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger",
-                "Waterproof phone case"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false },
+                { item: "Waterproof phone case", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Antiseptic wipes"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Antiseptic wipes", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Beach games",
-            //     "Books",
-            //     "Music player",
-            //     "Romantic games for two"
-            // ],
             documents: [
-                "ID",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Sunglasses",
-                "Hat",
-                "Beach towel",
-                "Waterproof phone case"
+                { item: "Sunglasses", check: false },
+                { item: "Hat", check: false },
+                { item: "Beach towel", check: false },
+                { item: "Waterproof phone case", check: false }
             ]
         },
         nature: {
-            clothing: {
-                upper_wear: [
-                    "Thermal base layers",
-                    "Fleece jacket",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Hiking pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Hiking pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player",
-            //     "Romantic camping activities"
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         culture_and_history: {
-            clothing: {
-                upper_wear: [
-                    "Casual shirts",
-                    "T-shirts",
-                    "Smart jackets"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Smart coat",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Local snacks",
-                "Water bottle",
-                "Energy drinks"
+            clothing: [
+                { item: "Casual shirts", check: false },
+                { item: "T-shirts", check: false },
+                { item: "Smart jackets", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Local snacks", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player",
-            //     "Romantic city tour activities"
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         city: {
-            clothing: {
-                upper_wear: [
-                    "T-shirts",
-                    "Shirts",
-                    "Smart jackets"
-                ],
-                lower_wear: [
-                    "Pants",
-                    "Shorts"
-                ],
-                underwear: [
-                    "Underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Raincoat",
-                    "Smart coat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Glasses",
-                    "Jewelry"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Cafe or restaurant meals",
-                "Snacks"
+            clothing: [
+                { item: "T-shirts", check: false },
+                { item: "Shirts", check: false },
+                { item: "Smart jackets", check: false },
+                { item: "Pants", check: false },
+                { item: "Shorts", check: false },
+                { item: "Underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Smart coat", check: false },
+                { item: "Hat", check: false },
+                { item: "Glasses", check: false },
+                { item: "Jewelry", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Cafe or restaurant meals", check: false },
+                { item: "Snacks", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Extra memory cards"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Extra memory cards", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "City map",
-            //     "Portable gaming console",
-            //     "Music player",
-            //     "Romantic city activities"
-            // ],
             documents: [
-                "ID and passport",
-                "City map",
-                "Hotel reservation details",
-                "Flight tickets"
+                { item: "ID and passport", check: false },
+                { item: "City map", check: false },
+                { item: "Hotel reservation details", check: false },
+                { item: "Flight tickets", check: false }
             ],
             equipment: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ]
         },
         camp: {
-            clothing: {
-                upper_wear: [
-                    "Fleece jacket",
-                    "Thermal base layers",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Camping pants",
-                    "Hiking shorts"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Raincoat"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Glasses"
-                ]
-            },
-            food_and_drink: [
-                "Energy bars",
-                "Nuts",
-                "Cooking set",
-                "Water bottle",
-                "Camp coffee maker"
+            clothing: [
+                { item: "Fleece jacket", check: false },
+                { item: "Thermal base layers", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Camping pants", check: false },
+                { item: "Hiking shorts", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Raincoat", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Glasses", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Insect repellent"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Energy bars", check: false },
+                { item: "Nuts", check: false },
+                { item: "Cooking set", check: false },
+                { item: "Water bottle", check: false },
+                { item: "Camp coffee maker", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Insect repellent", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "GPS device"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "GPS device", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Insect bite cream"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Insect bite cream", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Camping games",
-            //     "Nature guide book",
-            //     "Music player",
-            //     "Romantic camping activities"
-            // ],
             documents: [
-                "ID and passport",
-                "Insurance documents",
-                "Camp reservation details",
-                "Map and compass"
+                { item: "ID and passport", check: false },
+                { item: "Insurance documents", check: false },
+                { item: "Camp reservation details", check: false },
+                { item: "Map and compass", check: false }
             ],
             equipment: [
-                "Tent",
-                "Sleeping bag",
-                "Sleeping pad",
-                "Camp stove",
-                "Backpack",
-                "Flashlight",
-                "Tent repair kit"
+                { item: "Tent", check: false },
+                { item: "Sleeping bag", check: false },
+                { item: "Sleeping pad", check: false },
+                { item: "Camp stove", check: false },
+                { item: "Backpack", check: false },
+                { item: "Flashlight", check: false },
+                { item: "Tent repair kit", check: false }
             ]
         },
         ski: {
-            clothing: {
-                upper_wear: [
-                    "Thermal base layers",
-                    "Fleece jacket",
-                    "Windbreaker"
-                ],
-                lower_wear: [
-                    "Ski pants",
-                    "Thermal underwear"
-                ],
-                underwear: [
-                    "Thermal underwear",
-                    "Ski socks"
-                ],
-                outer_wear: [
-                    "Waterproof jacket",
-                    "Insulated jacket"
-                ],
-                accessories: [
-                    "Hat",
-                    "Gloves",
-                    "Ski goggles"
-                ]
-            },
-            food_and_drink: [
-                "Water bottle",
-                "Energy drinks",
-                "Snacks",
-                "Thermos"
+            clothing: [
+                { item: "Thermal base layers", check: false },
+                { item: "Fleece jacket", check: false },
+                { item: "Windbreaker", check: false },
+                { item: "Ski pants", check: false },
+                { item: "Thermal underwear", check: false },
+                { item: "Ski socks", check: false },
+                { item: "Waterproof jacket", check: false },
+                { item: "Insulated jacket", check: false },
+                { item: "Hat", check: false },
+                { item: "Gloves", check: false },
+                { item: "Ski goggles", check: false }
             ],
-            personal_care: {
-                skin_care: [
-                    "Moisturizer",
-                    "Sunscreen",
-                    "Lip balm"
-                ],
-                hair_care: [
-                    "Shampoo",
-                    "Conditioner"
-                ],
-                hygiene_products: [
-                    "Toothpaste",
-                    "Toothbrush",
-                    "Deodorant"
-                ],
-                shaving_products: [
-                    "Razor",
-                    "Shaving cream"
-                ]
-            },
+            food_and_drink: [
+                { item: "Water bottle", check: false },
+                { item: "Energy drinks", check: false },
+                { item: "Snacks", check: false },
+                { item: "Thermos", check: false }
+            ],
+            personal_care: [
+                { item: "Moisturizer", check: false },
+                { item: "Sunscreen", check: false },
+                { item: "Lip balm", check: false },
+                { item: "Shampoo", check: false },
+                { item: "Conditioner", check: false },
+                { item: "Toothpaste", check: false },
+                { item: "Toothbrush", check: false },
+                { item: "Deodorant", check: false },
+                { item: "Razor", check: false },
+                { item: "Shaving cream", check: false }
+            ],
             electronics: [
-                "Phone",
-                "Charger",
-                "Camera",
-                "Portable charger"
+                { item: "Phone", check: false },
+                { item: "Charger", check: false },
+                { item: "Camera", check: false },
+                { item: "Portable charger", check: false }
             ],
             health_and_first_aid: [
-                "First aid kit",
-                "Pain relievers",
-                "Bandages",
-                "Thermal blanket"
+                { item: "First aid kit", check: false },
+                { item: "Pain relievers", check: false },
+                { item: "Bandages", check: false },
+                { item: "Thermal blanket", check: false }
             ],
-            // entertainment_and_activities: [
-            //     "Ski equipment",
-            //     "Snowboard",
-            //     "Music player",
-            //     "Romantic ski activities"
-            // ],
             documents: [
-                "ID and passport",
-                "Ski pass",
-                "Insurance documents"
+                { item: "ID and passport", check: false },
+                { item: "Ski pass", check: false },
+                { item: "Insurance documents", check: false }
             ],
             equipment: [
-                "Ski poles",
-                "Ski boots",
-                "Snow boots",
-                "Ski bag"
+                { item: "Ski poles", check: false },
+                { item: "Ski boots", check: false },
+                { item: "Snow boots", check: false },
+                { item: "Ski bag", check: false }
             ]
         }
     }

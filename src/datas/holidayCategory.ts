@@ -5,5 +5,4 @@ export const holidayCategory = [
     { id: 4, item: "City" },
     { id: 5, item: "Camp" },
     { id: 6, item: "Ski" },
-    { id: 7, item: "Honeymoon" },
 ]

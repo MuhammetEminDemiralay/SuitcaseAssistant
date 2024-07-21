@@ -5,17 +5,17 @@ import { FontAwesome, MaterialIcons, Foundation, FontAwesome6, MaterialCommunity
 import { DateTimePickerAndroid, DateTimePickerEvent } from '@react-native-community/datetimepicker'
 import CountryFlag from "react-native-country-flag";
 import { Dropdown } from 'react-native-element-dropdown';
-import { countryDatas } from '../../datas/countryData';
+import { countryDatas } from '../../datas/countryDatas';
 import { holidayCategory } from '../../datas/holidayCategory';
 import { useDispatch } from 'react-redux';
 import { setSuitcaseInfo } from '../../redux/travelSlice';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { cityDatas } from '../../datas/cityDatas';
+import uuid from 'react-native-uuid'
 
 const { width, height } = Dimensions.get("window");
 
 const CreateHolidayScreen = () => {
-
-  const dispatch: any = useDispatch()
 
 
 
@@ -91,9 +91,12 @@ const CreateHolidayScreen = () => {
   const [value, setValue] = useState(null);
   const [flagCode, setFlagCode] = useState<string>("TR")
   const [targetCitys, setTargetCitys] = useState<[]>([]);
+  const [targetCountry, setTargetCountry] = useState("Turkey");
 
   const countryDropDownChange = (event: any) => {
     setFlagCode(event.code)
+    console.log(cityDatas.find(item => item.countryName == event.name)?.city);
+    setTargetCountry(event.name)
   }
 
   const cityDropDownChange = (event: any) => {
@@ -138,13 +141,10 @@ const CreateHolidayScreen = () => {
 
 
 
-  const create = () => {
-    console.log("Gender", gender);
-    console.log("Start date", startDate);
-    console.log("End date", endDate);
-    console.log("Travel", travel.item);
+  const create = async () => {
     if ((gender && startDate && endDate && travel) != null) {
-      dispatch(setSuitcaseInfo({ gender: gender, startDate: startDate, endDate: endDate, travelType: travel }))
+      const uid = uuid.v4()
+      await AsyncStorage.setItem(`${uid}`, JSON.stringify({ gender: gender, startDate: startDate, endDate: endDate, travelType: travel, countryName: 'Turkey', city: 'İstanbul' }))
     }
   }
 
@@ -291,10 +291,10 @@ const CreateHolidayScreen = () => {
             style={styles.dropdown}
             containerStyle={styles.dropdownContainer}
             search
-            data={countryDatas}
+            data={cityDatas}
             onChange={(event: any) => cityDropDownChange(event)}
-            labelField="name"
-            valueField="name"
+            labelField="city"
+            valueField="city"
             value={value}
             mode='modal'
             placeholder='City'
@@ -333,8 +333,8 @@ const CreateHolidayScreen = () => {
                     item.id == 3 ? require("../../datas/holidayCategoryImage/3.jpg") :
                       item.id == 4 ? require("../../datas/holidayCategoryImage/4.jpg") :
                         item.id == 5 ? require("../../datas/holidayCategoryImage/5.jpg") :
-                          item.id == 6 ? require("../../datas/holidayCategoryImage/6.jpg") :
-                            item.id == 7 ? require("../../datas/holidayCategoryImage/7.jpg") : null}
+                          item.id == 6 ? require("../../datas/holidayCategoryImage/6.jpg") : null
+              }
             />
           )}
           showsHorizontalScrollIndicator={false}

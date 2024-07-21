@@ -21,7 +21,7 @@ const HomeScreen = () => {
           <Pressable
             style={({ pressed }) => [
               {
-                backgroundColor: pressed ? '#fff' : 'rgba(255, 255, 255, 0.75)',
+                backgroundColor: pressed ? '#fff' : 'rgba(255, 255, 255, 0.5)',
               },
               styles.currentTravelBtn
             ]}
