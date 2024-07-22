@@ -12,6 +12,7 @@ import { setSuitcaseInfo } from '../../redux/travelSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { cityDatas } from '../../datas/cityDatas';
 import uuid from 'react-native-uuid'
+import { suitcaseDatas } from '../../datas/suitcaseData';
 
 const { width, height } = Dimensions.get("window");
 
@@ -142,9 +143,25 @@ const CreateHolidayScreen = () => {
 
 
   const create = async () => {
+    console.log(travel);
+
+    console.log("ta",suitcaseDatas[gender][travel.item.toLocaleLowerCase()]);
+
+
     if ((gender && startDate && endDate && travel) != null) {
       const uid = uuid.v4()
-      await AsyncStorage.setItem(`${uid}`, JSON.stringify({ gender: gender, startDate: startDate, endDate: endDate, travelType: travel, countryName: 'Turkey', city: 'İstanbul' }))
+
+
+      await AsyncStorage.setItem(`${uid}`, JSON.stringify(
+        {
+          gender: gender,
+          startDate: startDate,
+          endDate: endDate,
+          travelType: travel,
+          countryName: 'Turkey',
+          city: 'İstanbul',
+          data: suitcaseDatas[gender][travel.item.toLocaleLowerCase()]
+        }))
     }
   }
 
