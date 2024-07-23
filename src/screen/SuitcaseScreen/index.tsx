@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Dimensions, FlatList, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
-import { useSelector } from 'react-redux'
 import { suitcaseDatas } from '../../datas/suitcaseData'
-import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo, Fontisto } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useSelector } from 'react-redux';
 
 
 const { width, height } = Dimensions.get("window")
@@ -18,7 +18,6 @@ const SuitcaseScreen = () => {
     const contentFlatlistRef = useRef<any>()
     const contentOnViewRef = useRef((viewableItems: any) => {
         setViewable(viewableItems.viewableItems[0].item)
-
     })
 
     const contentViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
@@ -27,6 +26,8 @@ const SuitcaseScreen = () => {
     const [activeData, setActiveData] = useState<any>([])
     const [totalData, setTotalData] = useState(0);
     const [checkData, setCheckData] = useState(0);
+    const { allTravelData } = useSelector((state: any) => state.travel)
+
 
     useEffect(() => {
 
@@ -41,10 +42,7 @@ const SuitcaseScreen = () => {
                 const travelData = await AsyncStorage.getItem(`${activeTravelCategory}`)
                 setActiveData(travelData)
 
-
-
                 if (travelData != null) {
-
                     const suitcaseInfo = JSON.parse(travelData)
                     if (Object.keys(suitcaseInfo).length != 0) {
                         setData(suitcaseInfo.data)
@@ -69,14 +67,12 @@ const SuitcaseScreen = () => {
     }
 
 
-    const check = async (checkItem: any) => {
+    const check = (checkItem: any) => {
 
         setData((prevData: any) => {
             const updatedCategory = prevData[viewable].map((item: any) =>
                 item.item === checkItem.item ? { ...item, check: checkItem.check ? false : true } : item
             );
-
-
 
             const setAsync = async () => {
                 await AsyncStorage.setItem(`${activeTravelCategory}`,
@@ -105,12 +101,40 @@ const SuitcaseScreen = () => {
 
     }
 
+    const selectAll = (option: any) => {
 
+        setData((prevData: any) => {
+            const updatedCategory = prevData[viewable].map((item: any) =>
+                item.check == option ? { ...item, check: !option } : item
+            );
 
+            const setAsync = async () => {
+                await AsyncStorage.setItem(`${activeTravelCategory}`,
+                    JSON.stringify({
+                        gender: activeData.gender,
+                        startDate: activeData.startDate,
+                        endDate: activeData.endDate,
+                        countryName: 'Turkey',
+                        city: 'İstanbul',
+                        data: {
+                            ...prevData,
+                            [viewable]: updatedCategory
+                        }
+                    }))
+                setCheckData(updatedCategory.filter((item: any) => item.check == true).length)
+                setTotalData(updatedCategory.length)
 
+            }
+            setAsync();
 
+            return {
+                ...prevData,
+                [viewable]: updatedCategory
+            };
 
+        })
 
+    }
 
     return (
         <View style={styles.container}>
@@ -228,11 +252,24 @@ const SuitcaseScreen = () => {
                                             {
                                                 checkData != 0 && totalData != 0 &&
                                                 <>
-                                                    <View style={[{ width: ((width * 0.58) * (checkData / totalData)) }, styles.loadingBox]}>
-                                                    </View>
+                                                    <View style={[{ width: ((width * 0.58) * (checkData / totalData)) }, styles.loadingBox]}></View>
                                                     <Text style={styles.loadingText}>{checkData} / {totalData}</Text>
                                                 </>
                                             }
+                                        </View>
+                                        <View style={styles.optionBox}>
+                                            <Pressable
+                                                style={styles.selectBox}
+                                                onPress={() => selectAll(true)}
+                                            >
+                                                <MaterialIcons name="delete" size={24} color="#000814" />
+                                            </Pressable>
+                                            <Pressable
+                                                style={styles.selectBox}
+                                                onPress={() => selectAll(false)}
+                                            >
+                                                <MaterialCommunityIcons name="checkbox-multiple-marked" size={24} color="#000814" />
+                                            </Pressable>
                                         </View>
                                     </View>
                                 </View>

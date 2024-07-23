@@ -1,19 +1,23 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
 
 
+type Model = {
+    allTravelData: any[]
+}
+
+const initialState: Model = {
+    allTravelData: []
+}
 
 const travelSlice = createSlice({
     name: 'travel',
-    initialState: {
-        suitcaseInfo: {}
-    },
+    initialState,
     reducers: {
-        setSuitcaseInfo: (state, action) => {
-            
+        getAllTravelData: (state, action) => {
+            state.allTravelData = [...state.allTravelData, action.payload]
         }
     }
 })
 
 export default travelSlice.reducer
-export const { setSuitcaseInfo } = travelSlice.actions
+export const { getAllTravelData } = travelSlice.actions

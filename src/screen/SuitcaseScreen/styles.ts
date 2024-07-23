@@ -85,16 +85,19 @@ export const styles = StyleSheet.create({
     loadingContainer: {
         width: width * 0.9,
         height: height * 0.05,
-        justifyContent: 'center',
-        padding: width * 0.015
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: width * 0.0075
     },
     loadingSubContainer: {
         width: width * 0.58,
         height: height * 0.04,
         borderRadius: 10,
         backgroundColor: 'rgba(255,255,255,0.75)',
-        alignItems : 'center',
-        justifyContent : 'center'
+        alignItems: 'center',
+        justifyContent: 'center',
+
     },
     loadingBox: {
         height: height * 0.04,
@@ -102,9 +105,27 @@ export const styles = StyleSheet.create({
         backgroundColor: '#02c39a',
         borderRadius: 10,
         position: 'absolute',
-        left: 0
+        left: 0,
+        borderWidth: 1,
+        borderColor: '#fff'
     },
     loadingText: {
         fontWeight: '500',
+    },
+    optionBox: {
+        width: width * 0.28,
+        height: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        columnGap: 8
+    },
+    selectBox: {
+        width: height * 0.04,
+        height: height * 0.04,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        borderRadius: 6,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })

@@ -7,8 +7,6 @@ import CountryFlag from "react-native-country-flag";
 import { Dropdown } from 'react-native-element-dropdown';
 import { countryDatas } from '../../datas/countryDatas';
 import { holidayCategory } from '../../datas/holidayCategory';
-import { useDispatch } from 'react-redux';
-import { setSuitcaseInfo } from '../../redux/travelSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { cityDatas } from '../../datas/cityDatas';
 import uuid from 'react-native-uuid'
@@ -145,12 +143,8 @@ const CreateHolidayScreen = () => {
   const create = async () => {
     console.log(travel);
 
-    console.log("ta",suitcaseDatas[gender][travel.item.toLocaleLowerCase()]);
-
-
     if ((gender && startDate && endDate && travel) != null) {
       const uid = uuid.v4()
-
 
       await AsyncStorage.setItem(`${uid}`, JSON.stringify(
         {
@@ -160,9 +154,11 @@ const CreateHolidayScreen = () => {
           travelType: travel,
           countryName: 'Turkey',
           city: 'İstanbul',
+          code: flagCode,
+          key: uid,
           data: suitcaseDatas[gender][travel.item.toLocaleLowerCase()]
         }))
-    }
+    } 
   }
 
 
