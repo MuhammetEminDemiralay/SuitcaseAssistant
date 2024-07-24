@@ -121,7 +121,7 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Tent repair kit", check: false }
             ]
         },
-        culture_and_history: {
+        culture: {
             clothing: [
                 { item: "Casual shirts", check: false },
                 { item: "T-shirts", check: false },
@@ -480,7 +480,7 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Tent repair kit", check: false }
             ]
         },
-        culture_and_history: {
+        culture: {
             clothing: [
                 { item: "Casual shirts", check: false },
                 { item: "T-shirts", check: false },
@@ -841,7 +841,7 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Tent repair kit", check: false }
             ]
         },
-        culture_and_history: {
+        culture: {
             clothing: [
                 { item: "Casual shirts", check: false },
                 { item: "T-shirts", check: false },
@@ -1203,7 +1203,7 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Tent repair kit", check: false }
             ]
         },
-        culture_and_history: {
+        culture: {
             clothing: [
                 { item: "Casual shirts", check: false },
                 { item: "T-shirts", check: false },

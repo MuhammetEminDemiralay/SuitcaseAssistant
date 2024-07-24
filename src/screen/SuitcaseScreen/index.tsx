@@ -5,6 +5,7 @@ import { suitcaseDatas } from '../../datas/suitcaseData'
 import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useSelector } from 'react-redux';
+import CountryFlag from 'react-native-country-flag';
 
 
 const { width, height } = Dimensions.get("window")
@@ -102,7 +103,6 @@ const SuitcaseScreen = () => {
     }
 
     const selectAll = (option: any) => {
-
         setData((prevData: any) => {
             const updatedCategory = prevData[viewable].map((item: any) =>
                 item.check == option ? { ...item, check: !option } : item
@@ -138,19 +138,20 @@ const SuitcaseScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* <View style={{ width: width * 0.9, height: height * 0.85, borderWidth: 1, backgroundColor: 'red', left: width * 0.05, position: 'absolute', marginTop: height * 0.075, opacity: 0.2 }}></View> */}
+            <View style={{ width: width * 0.9, height: height * 0.85, borderWidth: 1, backgroundColor: 'red', left: width * 0.05, position: 'absolute', marginTop: height * 0.075, opacity: 0.2 }}></View>
 
-            <View style={{}}>
+            <View >
 
                 <FlatList
-                    data={keys}
+                    data={allTravelData}
                     renderItem={({ item, index }) => (
                         <Pressable
                             key={index}
-                            onPress={() => setActiveTravelCategory(item)}
-                            style={[{ backgroundColor: activeTravelCategory == item ? '#02c39a' : 'rgba(255,255,255,0.5)' }, styles.travelCategoryBtn]}
+                            onPress={() => setActiveTravelCategory(item.key)}
+                            style={[{ backgroundColor: activeTravelCategory == item.key ? '#02c39a' : 'rgba(255,255,255,0.5)' }, styles.travelCategoryBtn]}
                         >
-                            <Text style={{ fontSize: 16, fontWeight: '500' }}>Travel {index + 1}</Text>
+                            <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
+                            <Text style={styles.travelCategoryText}>{item.city}</Text>
                         </Pressable>
                     )}
                     style={styles.travelCategoryContainer}

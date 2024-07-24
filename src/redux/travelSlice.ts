@@ -2,22 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 type Model = {
-    allTravelData: any[]
+    allTravelData: any[],
+    updateState: boolean
 }
 
 const initialState: Model = {
-    allTravelData: []
+    allTravelData: [],
+    updateState: false
 }
 
 const travelSlice = createSlice({
     name: 'travel',
     initialState,
     reducers: {
-        getAllTravelData: (state, action) => {
+        setAllTravelData: (state, action) => {
             state.allTravelData = [...state.allTravelData, action.payload]
+        },
+        setState: (state) => {
+            state.updateState = true;
         }
     }
 })
 
 export default travelSlice.reducer
-export const { getAllTravelData } = travelSlice.actions
+export const { setAllTravelData, setState } = travelSlice.actions

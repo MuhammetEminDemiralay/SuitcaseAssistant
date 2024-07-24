@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React, { useState } from 'react'
-import { CreateHolidayScreen, HomeScreen, SuitcaseScreen } from '../screen';
-import { Entypo, FontAwesome, FontAwesome6 } from '@expo/vector-icons/';
+import { CreateHolidayScreen, HomeScreen, SuitcaseScreen, TravelScreen } from '../screen';
+import { Entypo, FontAwesome, FontAwesome6, Ionicons } from '@expo/vector-icons/';
 import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get("window")
@@ -46,6 +46,20 @@ const UserStack = () => {
         listeners={{
           tabPress: ({ target }) => {
             setData('suitcase')
+          }
+        }}
+      />
+      <Tab.Screen
+        name='travel'
+        component={TravelScreen}
+        options={{
+          tabBarIcon: () => (
+            <Ionicons name="earth" size={35} color={data == 'travel' ? '#fff' : 'black'} />
+          )
+        }}
+        listeners={{
+          tabPress: ({ target }) => {
+            setData('travel')
           }
         }}
       />

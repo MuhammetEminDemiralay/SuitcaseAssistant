@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     currentTravelContainer: {
         width: width * 0.9,
         height: height * 0.1,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
         borderTopRightRadius: 50,
@@ -30,26 +30,20 @@ export const styles = StyleSheet.create({
     travelBox: {
         width: (width * 0.9) - (height * 0.1),
         height: height * 0.1,
-    },
-    travelContentBox: {
-        width: '100%',
-        height: height * 0.05,
-        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        rowGap: 2
     },
     contentWrapper: {
         width: '90%',
         height: height * 0.04,
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius : 5,
-        backgroundColor : '#fff',
-        elevation : 5
+        borderRadius: 5,
     },
     flag: {
-        width: width * 0.1,
-        height: height * 0.035,
+        width: width * 0.09,
+        height: height * 0.03,
         borderRadius: 5,
         marginLeft: 5,
     },
@@ -64,9 +58,9 @@ export const styles = StyleSheet.create({
         height: height * 0.035,
         fontWeight: '500',
         alignItems: 'center',
-        justifyContent: 'center',
         flexDirection: 'row',
         columnGap: 5,
+        paddingLeft: 7
     },
     dateText: {
         fontSize: 16,
@@ -97,7 +91,7 @@ export const styles = StyleSheet.create({
         width: width * 0.9,
         height: height * 0.1,
         marginTop: height * 0.025,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center'
@@ -110,11 +104,18 @@ export const styles = StyleSheet.create({
         width: width * 0.9,
         height: height * 0.3,
         marginTop: height * 0.025,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center'
-    }
+    },
 
+
+    suitcase: {
+
+    },
+    earth: {
+
+    }
 
 }) 

@@ -11,11 +11,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { cityDatas } from '../../datas/cityDatas';
 import uuid from 'react-native-uuid'
 import { suitcaseDatas } from '../../datas/suitcaseData';
+import { useDispatch } from 'react-redux';
+import { setAllTravelData, setState } from '../../redux/travelSlice';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("window");
 
 const CreateHolidayScreen = () => {
 
+
+  const dispatch: any = useDispatch();
+  const navigation: any = useNavigation();
 
 
   // GENDER
@@ -144,23 +150,24 @@ const CreateHolidayScreen = () => {
     console.log(travel);
 
     if ((gender && startDate && endDate && travel) != null) {
-      const uid = uuid.v4()
+      let uid = uuid.v4()
+      const data = {
+        gender: gender,
+        startDate: startDate,
+        endDate: endDate,
+        travelType: travel,
+        countryName: 'Turkey',
+        city: 'İstanbul',
+        code: flagCode,
+        key: uid,
+        data: suitcaseDatas[gender][travel.item.toLocaleLowerCase()]
+      }
+      await AsyncStorage.setItem(`${uid}`, JSON.stringify(data))
+      dispatch(setAllTravelData(data))
+    }
 
-      await AsyncStorage.setItem(`${uid}`, JSON.stringify(
-        {
-          gender: gender,
-          startDate: startDate,
-          endDate: endDate,
-          travelType: travel,
-          countryName: 'Turkey',
-          city: 'İstanbul',
-          code: flagCode,
-          key: uid,
-          data: suitcaseDatas[gender][travel.item.toLocaleLowerCase()]
-        }))
-    } 
+    dispatch(setState())
   }
-
 
   return (
     <View style={styles.container}>

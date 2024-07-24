@@ -70,17 +70,18 @@ export const styles = StyleSheet.create({
     travelCategoryContainer: {
         width: width * 0.9,
         height: height * 0.05,
-        borderRadius: 10,
+        
     },
     travelCategoryBtn: {
         width: width * 0.29,
         height: '100%',
         borderRadius: 10,
-        marginRight: width * 0.01,
+        marginRight: width * 0.015,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         borderWidth: 1,
-        borderColor: '#fff'
+        borderColor: '#fff',
+        flexDirection: 'row',
     },
     loadingContainer: {
         width: width * 0.9,
@@ -127,5 +128,16 @@ export const styles = StyleSheet.create({
         borderRadius: 6,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    flag: {
+        width: width * 0.08,
+        height: height * 0.027,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#fff'
+    },
+    travelCategoryText: {
+        fontSize: 16,
+        fontWeight: '500'
     }
 })
