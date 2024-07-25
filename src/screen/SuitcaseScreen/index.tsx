@@ -6,6 +6,7 @@ import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Enty
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useSelector } from 'react-redux';
 import CountryFlag from 'react-native-country-flag';
+import { useRoute } from '@react-navigation/native';
 
 
 const { width, height } = Dimensions.get("window")
@@ -22,22 +23,19 @@ const SuitcaseScreen = () => {
     })
 
     const contentViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
-    const [keys, setKeys] = useState<readonly string[]>([])
     const [activeTravelCategory, setActiveTravelCategory] = useState<string>("");
     const [activeData, setActiveData] = useState<any>([])
     const [totalData, setTotalData] = useState(0);
     const [checkData, setCheckData] = useState(0);
-    const { allTravelData } = useSelector((state: any) => state.travel)
+    const { allTravelData } = useSelector((state: any) => state.travel);
+    const { params }: any = useRoute();
 
 
     useEffect(() => {
-
         const fetchData = async () => {
             try {
-                const key = await AsyncStorage.getAllKeys()
-                setKeys(key);
                 if (activeTravelCategory == '') {
-                    setActiveTravelCategory(key[0])
+                    setActiveTravelCategory(allTravelData[0].key)
                 }
 
                 const travelData = await AsyncStorage.getItem(`${activeTravelCategory}`)
@@ -57,8 +55,12 @@ const SuitcaseScreen = () => {
         }
         setCategory(Object.keys(suitcaseDatas.male.sea))
         fetchData()
-    }, [activeTravelCategory, viewable, keys[0]])
 
+    }, [activeTravelCategory, viewable, allTravelData])
+
+    useEffect(() => {
+        setActiveTravelCategory(params)
+    }, [params])
 
 
     const [active, setActive] = useState('clothing');
@@ -138,7 +140,7 @@ const SuitcaseScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ width: width * 0.9, height: height * 0.85, borderWidth: 1, backgroundColor: 'red', left: width * 0.05, position: 'absolute', marginTop: height * 0.075, opacity: 0.2 }}></View>
+            {/* <View style={{ width: width * 0.9, height: height * 0.85, borderWidth: 1, backgroundColor: 'red', left: width * 0.05, position: 'absolute', marginTop: height * 0.075, opacity: 0.2 }}></View> */}
 
             <View >
 
@@ -156,6 +158,7 @@ const SuitcaseScreen = () => {
                     )}
                     style={styles.travelCategoryContainer}
                     horizontal
+                    showsHorizontalScrollIndicator={false}
                 />
 
                 <FlatList
@@ -248,31 +251,34 @@ const SuitcaseScreen = () => {
                                         showsVerticalScrollIndicator={false}
                                         numColumns={3}
                                     />
-                                    <View style={styles.loadingContainer}>
-                                        <View style={styles.loadingSubContainer}>
-                                            {
-                                                checkData != 0 && totalData != 0 &&
-                                                <>
-                                                    <View style={[{ width: ((width * 0.58) * (checkData / totalData)) }, styles.loadingBox]}></View>
-                                                    <Text style={styles.loadingText}>{checkData} / {totalData}</Text>
-                                                </>
-                                            }
+                                    {
+                                        allTravelData.length != 0 &&
+                                        <View style={styles.loadingContainer}>
+                                            <View style={styles.loadingSubContainer}>
+                                                {
+                                                    checkData != 0 && totalData != 0 &&
+                                                    <>
+                                                        <View style={[{ width: ((width * 0.58) * (checkData / totalData)) }, styles.loadingBox]}></View>
+                                                        <Text style={styles.loadingText}>{checkData} / {totalData}</Text>
+                                                    </>
+                                                }
+                                            </View>
+                                            <View style={styles.optionBox}>
+                                                <Pressable
+                                                    style={styles.selectBox}
+                                                    onPress={() => selectAll(true)}
+                                                >
+                                                    <MaterialIcons name="delete" size={24} color="#000814" />
+                                                </Pressable>
+                                                <Pressable
+                                                    style={styles.selectBox}
+                                                    onPress={() => selectAll(false)}
+                                                >
+                                                    <MaterialCommunityIcons name="checkbox-multiple-marked" size={24} color="#000814" />
+                                                </Pressable>
+                                            </View>
                                         </View>
-                                        <View style={styles.optionBox}>
-                                            <Pressable
-                                                style={styles.selectBox}
-                                                onPress={() => selectAll(true)}
-                                            >
-                                                <MaterialIcons name="delete" size={24} color="#000814" />
-                                            </Pressable>
-                                            <Pressable
-                                                style={styles.selectBox}
-                                                onPress={() => selectAll(false)}
-                                            >
-                                                <MaterialCommunityIcons name="checkbox-multiple-marked" size={24} color="#000814" />
-                                            </Pressable>
-                                        </View>
-                                    </View>
+                                    }
                                 </View>
                             }
                         </View>

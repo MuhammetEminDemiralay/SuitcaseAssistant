@@ -1,30 +1,35 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ActivityIndicator, Dimensions, FlatList, Image, Pressable, Text, View } from 'react-native'
+import { Dimensions, FlatList, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
 import { Ionicons, FontAwesome6 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllTravelData } from '../../redux/travelSlice';
+import { setActiveTabBar, setAllTravelData } from '../../redux/travelSlice';
 import CountryFlag from 'react-native-country-flag'
+import { useNavigation } from '@react-navigation/native';
+import MapView from 'react-native-maps';
 
 const { width, height } = Dimensions.get("window")
 
 const HomeScreen = () => {
 
   const dispatch: any = useDispatch();
-  const { allTravelData, updateState } = useSelector((state: any) => state.travel)
+  const { allTravelData, updateState } = useSelector((state: any) => state.travel);
+  const navigation: any = useNavigation();
 
-  const [viewable, setViewable] = useState("");
+  const [weatherData, setWeatherData] = useState<any>();
+  const [loading, setLoading] = useState(true);
+
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
+
   const contentViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
   const contentFlatlistRef = useRef<any>()
   const contentOnViewRef = useRef((viewableItems: any) => {
-    setViewable(viewableItems?.viewableItems[0]?.item)
+    setActiveKey(viewableItems.viewableItems[0].key)
 
     const startDate = new Date(viewableItems?.viewableItems[0]?.item?.startDate)
     const endDate = new Date(viewableItems?.viewableItems[0]?.item?.endDate)
-
     setStartDate(`${startDate.getDate() < 9 ? 0 : ""}${startDate.getDate()} ${startDate.getMonth() < 9 ? 0 : ""}${startDate.getMonth() + 1} ${startDate.getFullYear()}`)
     setEndDate(`${endDate.getDate() < 9 ? 0 : ""}${endDate.getDate()} ${endDate.getMonth() < 9 ? 0 : ""}${endDate.getMonth() + 1} ${endDate.getFullYear()}`)
 
@@ -44,46 +49,43 @@ const HomeScreen = () => {
         }
       }
     }
-
     getAllAsyncStorageData()
+
+    const fetchWeatherData = async () => {
+      try {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=Istanbul&appid=406ac31f986f7082f58ba38065f856eb`
+          // "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=406ac31f986f7082f58ba38065f856eb"
+        );
+
+        const data = await response.json();
+        console.log(data);
+
+        setWeatherData(data); // 3 saatlik tahmin verileri
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchWeatherData();
+
   }, [])
 
 
 
-  const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const fetchWeatherData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://api.openweathermap.org/data/2.5/weather?q=Konya&appid=406ac31f986f7082f58ba38065f856eb`
-  //       );
-
-
-  //       const data = await response.json();
-  //       console.log(data);
-
-  //       setWeatherData(data); // 3 saatlik tahmin verileri
-  //     } catch (error) {
-  //       console.error(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchWeatherData();
-  // }, []);
-
-
 
   const [active, setActive] = useState("suitcase")
+  const [activeKey, setActiveKey] = useState("");
+
   const activeRoute = () => {
-    console.log("A");
     active == 'suitcase' ? setActive('earth') : setActive('suitcase')
   }
 
-  console.log(active);
+  const route = () => {
+    dispatch(setActiveTabBar(`${active}`))
+    navigation.navigate(`${active}`, activeKey)
+  }
 
 
 
@@ -140,26 +142,34 @@ const HomeScreen = () => {
               },
               styles.currentTravelBtn
             ]}
+            onPress={() => route()}
             onLongPress={() => activeRoute()}
           >
-            {/* <View
+            <View
               style={[
                 {
                   position: active == 'suitcase' ? 'relative' : 'absolute',
-                  
+                  bottom: active == 'suitcase' ? 0 : 5,
                 },
                 styles.suitcase]}>
-              <FontAwesome6 name="suitcase-rolling" size={25} color='black' />
+              <FontAwesome6
+                name="suitcase-rolling"
+                size={active == 'suitcase' ? 30 : 20}
+                color={active == 'suitcase' ? 'black' : 'gray'}
+              />
             </View>
 
             <Ionicons
               style={[
                 {
                   position: active == 'earth' ? 'relative' : 'absolute',
-
+                  bottom: active == 'earth' ? 0 : 5
 
                 }, styles.earth]}
-              name="earth" size={25} color='black' /> */}
+              name="earth"
+              size={active == 'earth' ? 35 : 20}
+              color={active == 'earth' ? 'black' : 'gray'}
+            />
           </Pressable>
         </View>
       </View>
@@ -175,8 +185,26 @@ const HomeScreen = () => {
       {/* Map */}
 
       <View style={styles.mapContainer}>
-        <Text style={{ fontSize: 25, fontWeight: '500' }}>Map</Text>
+        {
+          weatherData &&
+          <MapView
+            style={styles.mapViewContainer}
+            initialRegion={{
+              latitude: weatherData.coord.lat,
+              longitude: weatherData.coord.lon,
+              latitudeDelta: 0.1,
+              longitudeDelta: 0.1
+            }}
+          />
+        }
       </View>
+
+
+      <View style={styles.noteContainer}>
+        <Text style={{ fontSize: 25, fontWeight: '500' }}>Note</Text>
+
+      </View>
+
 
     </View>
   )

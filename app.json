@@ -19,6 +19,11 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAgVU3PiBcjExRx6lo7JzpcK_jALFt3YiU"
+        }
+      },
       "package": "com.anonymous.SuitcaseAssistant"
     },
     "web": {

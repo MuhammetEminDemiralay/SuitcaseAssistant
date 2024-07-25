@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
         height: height * 0.09,
         borderRadius: 50,
         alignItems: 'center',
-        justifyContent: 'center',
+        paddingTop: 10
     },
 
 
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: 10,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 
 
@@ -116,6 +116,22 @@ export const styles = StyleSheet.create({
     },
     earth: {
 
+    },
+
+
+    noteContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: width * 0.9,
+        height: height * 0.225,
+        marginTop: height * 0.025,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        borderRadius: 10
+    },
+    mapViewContainer: {
+        width: '95%',
+        height: '95%',
     }
+
 
 }) 

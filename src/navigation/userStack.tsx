@@ -3,12 +3,16 @@ import React, { useState } from 'react'
 import { CreateHolidayScreen, HomeScreen, SuitcaseScreen, TravelScreen } from '../screen';
 import { Entypo, FontAwesome, FontAwesome6, Ionicons } from '@expo/vector-icons/';
 import { Dimensions } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveTabBar } from '../redux/travelSlice';
 
 const { width, height } = Dimensions.get("window")
 
 const UserStack = () => {
   const Tab = createBottomTabNavigator();
-  const [data, setData] = useState('home')
+  const [data, setData] = useState('home');
+  const dispatch: any = useDispatch();
+  const { activeTabBar } = useSelector((state: any) => state.travel)
 
   return (
     <Tab.Navigator
@@ -26,12 +30,12 @@ const UserStack = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: () => (
-            <Entypo name="home" size={30} color={data == 'home' ? '#fff' : 'black'} />
+            <Entypo name="home" size={30} color={activeTabBar == 'home' ? '#fff' : 'black'} />
           )
         }}
         listeners={{
-          tabPress: ({ target }) => {
-            setData('home')
+          tabPress: () => {
+            dispatch(setActiveTabBar('home'))
           }
         }}
       />
@@ -40,26 +44,26 @@ const UserStack = () => {
         component={SuitcaseScreen}
         options={{
           tabBarIcon: () => (
-            <FontAwesome6 name="suitcase-rolling" size={30} color={data == 'suitcase' ? '#fff' : 'black'} />
+            <FontAwesome6 name="suitcase-rolling" size={30} color={activeTabBar == 'suitcase' ? '#fff' : 'black'} />
           )
         }}
         listeners={{
-          tabPress: ({ target }) => {
-            setData('suitcase')
+          tabPress: () => {
+            dispatch(setActiveTabBar('suitcase'))
           }
         }}
       />
       <Tab.Screen
-        name='travel'
+        name='earth'
         component={TravelScreen}
         options={{
           tabBarIcon: () => (
-            <Ionicons name="earth" size={35} color={data == 'travel' ? '#fff' : 'black'} />
+            <Ionicons name="earth" size={35} color={activeTabBar == 'earth' ? '#fff' : 'black'} />
           )
         }}
         listeners={{
-          tabPress: ({ target }) => {
-            setData('travel')
+          tabPress: () => {
+            dispatch(setActiveTabBar('earth'))
           }
         }}
       />
@@ -68,12 +72,12 @@ const UserStack = () => {
         component={CreateHolidayScreen}
         options={{
           tabBarIcon: () => (
-            <FontAwesome name="table" size={30} color={data == 'createHoliday' ? '#fff' : 'black'} />
+            <FontAwesome name="table" size={30} color={activeTabBar == 'createHoliday' ? '#fff' : 'black'} />
           )
         }}
         listeners={{
-          tabPress: ({ target }) => {
-            setData('createHoliday')
+          tabPress: () => {
+            dispatch(setActiveTabBar('createHoliday'))
           }
         }}
       />
