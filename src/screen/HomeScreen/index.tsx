@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Dimensions, FlatList, Pressable, Text, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
 import { Ionicons, FontAwesome6 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,6 +8,7 @@ import { setActiveTabBar, setAllTravelData } from '../../redux/travelSlice';
 import CountryFlag from 'react-native-country-flag'
 import { useNavigation } from '@react-navigation/native';
 import MapView from 'react-native-maps';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get("window")
 
@@ -17,8 +18,10 @@ const HomeScreen = () => {
   const { allTravelData, updateState } = useSelector((state: any) => state.travel);
   const navigation: any = useNavigation();
 
-  const [weatherData, setWeatherData] = useState<any>();
-  const [loading, setLoading] = useState(true);
+  const [weatherData, setWeatherData] = useState<any>([]);
+  const [cityData, setCityData] = useState();
+  const [mainData, setMainData] = useState<any>();
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
@@ -51,27 +54,62 @@ const HomeScreen = () => {
     }
     getAllAsyncStorageData()
 
+
+
     const fetchWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=Istanbul&appid=406ac31f986f7082f58ba38065f856eb`
-          // "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=406ac31f986f7082f58ba38065f856eb"
+          `https://api.openweathermap.org/data/2.5/forecast?q=Rize&appid=406ac31f986f7082f58ba38065f856eb`
         );
 
         const data = await response.json();
-        console.log(data);
 
-        setWeatherData(data); // 3 saatlik tahmin verileri
+
+        let fullDatas: any[] = []
+        let datas: any[] = []
+        let currentItem = new Date(data.list[0].dt_txt)
+        let mainData: any[] = [];
+
+        data.list.forEach((item: any, index: any) => {
+
+          const date = new Date(item.dt_txt);
+
+          if (date.getDate() == currentItem.getDate()) {
+            datas.push(item)
+
+            if (date.getHours() == 21) {
+
+              let newDatas = [...datas];  // Önemli
+
+              fullDatas.push(datas)
+              const mainSortedData = newDatas.sort((a, b) => a.main.temp - b.main.temp)
+              const data = {
+                date: date,
+                minTemp: mainSortedData[0],
+                maxTemp: mainSortedData[mainSortedData.length - 1]
+              }
+              mainData.push(data)
+              datas = []
+            }
+          } else {
+            datas.push(item)
+            currentItem = date;
+          }
+
+        })
+
+        setMainData(mainData)
+        setCityData(data.city);
+        setWeatherData(fullDatas);
+
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(false);
       }
     };
+
     fetchWeatherData();
 
   }, [])
-
 
 
 
@@ -87,11 +125,20 @@ const HomeScreen = () => {
     navigation.navigate(`${active}`, activeKey)
   }
 
+  const weatherRef = useRef<any>();
+  const [activeIndex, setActiveIndex] = useState<any>(0);
+  const setTargetWeather = (item: any) => {
+    weatherRef.current.scrollToIndex({ index: item.index, animated: true })
+    setActiveIndex(item)
+    console.log(item.item.maxTemp.weather[0].icon);
+    
+  }
+
 
 
   return (
     <View style={styles.container}>
-      {/* <View style={{ width: '100%', height: height * 0.8, borderWidth: 0.5, position : 'absolute', marginVertical : height * 0.1}}></View> */}
+      <View style={{ width: '100%', height: height * 0.85, borderWidth: 0.5, position: 'absolute', marginTop: height * 0.075 }}></View>
 
 
       {/* Info */}
@@ -110,13 +157,13 @@ const HomeScreen = () => {
               <View style={styles.contentWrapper}>
 
                 <View style={styles.date}>
-                  <FontAwesome6 name="hourglass-start" size={20} color="#343a40" />
+                  <FontAwesome6 name="hourglass-start" size={18} color="#343a40" />
                   <Text style={styles.dateText}>{startDate}</Text>
                 </View>
 
                 <View style={styles.date}>
                   <View style={{ transform: [{ rotate: '180deg' }] }}>
-                    <FontAwesome6 name="hourglass-start" size={20} color="#343a40" />
+                    <FontAwesome6 name="hourglass-start" size={18} color="#343a40" />
                   </View>
                   <Text style={styles.dateText}>{endDate}</Text>
                 </View>
@@ -175,28 +222,99 @@ const HomeScreen = () => {
       </View>
 
 
-      {/* weather */}
+      {/* WEATHER */}
 
       <View style={styles.weatherContainer}>
-        <Text style={{ fontSize: 25, fontWeight: '500' }}>Weather</Text>
+
+        <View style={styles.weatherTopBox}>
+          <View style={styles.weatherContentTopBox}>
+             <View style={styles.weatherIconBox}>
+              <Image style={styles.weatherIcon} source={{ uri: `https://openweathermap.org/img/wn/${activeIndex.item.maxTemp.weather[0].icon}@2x.png` }} />
+            </View> 
+          </View>
+
+          <View style={styles.weatherContentBottomBox}>
+            <FlatList
+              ref={weatherRef}
+              data={weatherData}
+              renderItem={({ item, index }) => (
+                <View
+                  key={index}
+                  style={styles.weatherGraficBox}
+                >
+                  <FlatList
+                    data={item}
+                    renderItem={({ item, index }) => (
+                      <View
+                        key={index}
+                        style={styles.tempInfoBox}
+                      >
+                        <View style={styles.tempValueBox}>
+                          <Text style={styles.tempValueText}>{Math.ceil(item?.main?.temp - 272.15)}</Text>
+                        </View>
+                        <View style={styles.tempLineBox}>
+                          <LinearGradient
+                            style={[{ height: (height * 0.03) * (Math.ceil(item?.main?.temp - 272.15) / 50) }, styles.tempLine]}
+                            colors={["orange", "#fff"]}
+                          />
+                          <View />
+                        </View>
+                        <View style={styles.tempTimeBox}>
+                          <Text style={styles.tempTimeText}>{item.dt_txt.split(" ")[1].slice(0, 5)}</Text>
+                        </View>
+                      </View>
+                    )}
+                    style={styles.tempInfoContainer}
+                    horizontal
+                  />
+                </View>
+              )}
+              horizontal
+              style={styles.weatherGraficContainer}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
+        </View>
+
+
+        <View style={styles.weatherBottomBox}>
+          {
+            weatherData &&
+            <FlatList
+              data={mainData}
+              renderItem={({ item, index }) => (
+                <Pressable
+                  key={index}
+                  style={[{ backgroundColor: index == activeIndex.index ? '#02c39a' : 'rgba(0, 0,0,0)' }, styles.weatherBox]}
+                  onPress={() => setTargetWeather({ item: item, index: index })}
+                >
+                  <View style={styles.dayBox}>
+                    <Text style={styles.dayText}>{daysOfWeek[item.date.getDay()]}</Text>
+                  </View>
+
+                  <View style={styles.weatherIconBox}>
+                    <Image style={styles.weatherIcon} source={{ uri: `https://openweathermap.org/img/wn/${item.maxTemp.weather[0].icon}@2x.png` }} />
+                  </View>
+                  <View style={styles.tempBox}>
+                    <Text style={styles.maxTemp}>{Math.ceil(item.maxTemp.main.temp - 272.15)}°</Text>
+                    <Text style={[{ color: activeIndex.index == index ? '#fff' : '#757474', }, styles.minTemp]}>{Math.ceil(item.minTemp.main.temp - 272.15)}°</Text>
+                  </View>
+                </Pressable>
+              )}
+              style={styles.weatherWrapper}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
+          }
+        </View>
+
       </View>
 
 
       {/* Map */}
 
       <View style={styles.mapContainer}>
-        {
-          weatherData &&
-          <MapView
-            style={styles.mapViewContainer}
-            initialRegion={{
-              latitude: weatherData.coord.lat,
-              longitude: weatherData.coord.lon,
-              latitudeDelta: 0.1,
-              longitudeDelta: 0.1
-            }}
-          />
-        }
+
       </View>
 
 
