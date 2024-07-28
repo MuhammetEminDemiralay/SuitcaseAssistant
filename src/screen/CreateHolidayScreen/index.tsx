@@ -147,9 +147,7 @@ const CreateHolidayScreen = () => {
 
 
   const create = async () => {
-    console.log(travel);
-
-    if ((gender && startDate && endDate && travel) != null) {
+    if (gender != null && startDate != undefined && endDate != undefined && travel != null && flagCode != "") {
       let uid = uuid.v4()
       const data = {
         gender: gender,
@@ -164,6 +162,7 @@ const CreateHolidayScreen = () => {
       }
       await AsyncStorage.setItem(`${uid}`, JSON.stringify(data))
       dispatch(setAllTravelData(data))
+      navigation.navigate("suitcase")
     }
 
     dispatch(setState())

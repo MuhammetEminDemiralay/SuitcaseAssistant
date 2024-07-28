@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Dimensions, FlatList, Image, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
-import { Ionicons, FontAwesome6 } from '@expo/vector-icons';
+import { Ionicons, FontAwesome6, FontAwesome, MaterialCommunityIcons, Fontisto } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveTabBar, setAllTravelData } from '../../redux/travelSlice';
@@ -55,11 +55,13 @@ const HomeScreen = () => {
     getAllAsyncStorageData()
 
 
+    console.log(allTravelData);
+
 
     const fetchWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=Rize&appid=406ac31f986f7082f58ba38065f856eb`
+          `https://api.openweathermap.org/data/2.5/forecast?q=Istanbul&appid=406ac31f986f7082f58ba38065f856eb`
         );
 
         const data = await response.json();
@@ -98,6 +100,7 @@ const HomeScreen = () => {
 
         })
 
+        setActiveWeatherItem(mainData[0])
         setMainData(mainData)
         setCityData(data.city);
         setWeatherData(fullDatas);
@@ -110,6 +113,8 @@ const HomeScreen = () => {
     fetchWeatherData();
 
   }, [])
+
+  console.log(allTravelData);
 
 
 
@@ -125,15 +130,19 @@ const HomeScreen = () => {
     navigation.navigate(`${active}`, activeKey)
   }
 
+
+  // WEATHER
   const weatherRef = useRef<any>();
-  const [activeIndex, setActiveIndex] = useState<any>(0);
+  const [activeWeatherIndex, setActiveWeatherIndex] = useState<any>(0);
+  const [activeWeatherItem, setActiveWeatherItem] = useState<any>()
+
   const setTargetWeather = (item: any) => {
     weatherRef.current.scrollToIndex({ index: item.index, animated: true })
-    setActiveIndex(item)
-    console.log(item.item.maxTemp.weather[0].icon);
-    
+    setActiveWeatherIndex(item.index)
+    setActiveWeatherItem(item.item)
   }
 
+  const [weatherOption, setWeatherOption] = useState("temperature")
 
 
   return (
@@ -150,7 +159,10 @@ const HomeScreen = () => {
 
             <View key={index} style={styles.travelBox}>
               <View style={styles.contentWrapper}>
-                <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
+                {
+                  item.code &&
+                  <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
+                }
                 <Text style={styles.cityText}>{item.countryName} -</Text>
                 <Text style={styles.cityText}>{item.city}</Text>
               </View>
@@ -223,93 +235,187 @@ const HomeScreen = () => {
 
 
       {/* WEATHER */}
+      {
+        weatherData &&
+        <View style={styles.weatherContainer}>
 
-      <View style={styles.weatherContainer}>
+          {/* WEATHER TOP */}
+          <View style={styles.weatherTopBox}>
 
-        <View style={styles.weatherTopBox}>
-          <View style={styles.weatherContentTopBox}>
-             <View style={styles.weatherIconBox}>
-              <Image style={styles.weatherIcon} source={{ uri: `https://openweathermap.org/img/wn/${activeIndex.item.maxTemp.weather[0].icon}@2x.png` }} />
-            </View> 
-          </View>
+            {
+              activeWeatherItem != undefined &&
+              <View style={styles.weatherContentTopBox}>
 
-          <View style={styles.weatherContentBottomBox}>
-            <FlatList
-              ref={weatherRef}
-              data={weatherData}
-              renderItem={({ item, index }) => (
-                <View
-                  key={index}
-                  style={styles.weatherGraficBox}
-                >
-                  <FlatList
-                    data={item}
-                    renderItem={({ item, index }) => (
-                      <View
-                        key={index}
-                        style={styles.tempInfoBox}
-                      >
-                        <View style={styles.tempValueBox}>
-                          <Text style={styles.tempValueText}>{Math.ceil(item?.main?.temp - 272.15)}</Text>
-                        </View>
-                        <View style={styles.tempLineBox}>
-                          <LinearGradient
-                            style={[{ height: (height * 0.03) * (Math.ceil(item?.main?.temp - 272.15) / 50) }, styles.tempLine]}
-                            colors={["orange", "#fff"]}
-                          />
-                          <View />
-                        </View>
-                        <View style={styles.tempTimeBox}>
-                          <Text style={styles.tempTimeText}>{item.dt_txt.split(" ")[1].slice(0, 5)}</Text>
-                        </View>
-                      </View>
-                    )}
-                    style={styles.tempInfoContainer}
-                    horizontal
-                  />
+                <View style={styles.weatherContentLeftTopBox}>
+                  <View style={[{ width: width * 0.1 }, styles.weatherIconBox]}>
+                    <Image style={styles.weatherIcon} source={{ uri: `https://openweathermap.org/img/wn/${activeWeatherItem.maxTemp.weather[0].icon}@2x.png` }} />
+                  </View>
+                  <View style={styles.temperatureTextBox}>
+                    <Text style={styles.temperatureText}>{Math.ceil(activeWeatherItem.maxTemp.main.temp - 272.15)}°</Text>
+                  </View>
+                  <View style={styles.weatherInfoBox}>
+                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>Rain : {activeWeatherItem.maxTemp.pop * 100}%</Text>
+                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>Humidity : {activeWeatherItem.maxTemp.main.humidity}%</Text>
+                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>Wind : {Math.ceil(activeWeatherItem.maxTemp.wind.speed * 3.6)}km/s</Text>
+                  </View>
+                  <View style={styles.weatherBigInfoBox}>
+                    <Text style={[{ color: '#000814' }, styles.weatherInfoText]}>Rize</Text>
+                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>{daysOfWeek[activeWeatherIndex]}</Text>
+                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>{activeWeatherItem.maxTemp.weather[0].description}</Text>
+                  </View>
                 </View>
-              )}
-              horizontal
-              style={styles.weatherGraficContainer}
-              showsHorizontalScrollIndicator={false}
-            />
+
+                {/* weather option */}
+                <View style={styles.weatherContentRightTopBox}>
+                  <Pressable
+                    style={[{ backgroundColor: weatherOption == 'temperature' ? '#02c39a' : '#fff' }, styles.temperatureBtnBox]}
+                    onPress={() => setWeatherOption("temperature")}
+                  >
+                    <FontAwesome
+                      name="thermometer" size={20}
+                      color={weatherOption == 'temperature' ? '#fff' : '#000814'}
+                    />
+                  </Pressable>
+                  <Pressable
+                    style={[{ backgroundColor: weatherOption == 'rain' ? '#02c39a' : '#fff' }, styles.temperatureBtnBox]}
+                    onPress={() => setWeatherOption("rain")}
+                  >
+                    <Ionicons
+                      name="rainy" size={20}
+                      color={weatherOption == 'rain' ? '#fff' : '#000814'}
+                    />
+                  </Pressable>
+                  <Pressable
+                    style={[{ backgroundColor: weatherOption == 'wind' ? '#02c39a' : '#fff' }, styles.temperatureBtnBox]}
+                    onPress={() => setWeatherOption("wind")}
+                  >
+                    <MaterialCommunityIcons
+                      name="windsock" size={20}
+                      color={weatherOption == 'wind' ? '#fff' : '#000814'}
+                    />
+                  </Pressable>
+                </View>
+              </View>
+            }
+
+
+            <View style={styles.weatherContentBottomBox}>
+              <FlatList
+                ref={weatherRef}
+                scrollEnabled={false}
+                data={weatherData}
+                renderItem={({ item, index }) => (
+                  <View
+                    key={index}
+                    style={styles.weatherGraficBox}
+                  >
+                    <FlatList
+                      data={item}
+                      renderItem={({ item, index }) => (
+                        <View
+                          key={index}
+                          style={styles.tempInfoBox}
+                        >
+                          <View style={styles.tempValueBox}>
+
+                            {
+                              weatherOption == 'temperature' &&
+                              <Text style={[{ color: '#757474', fontSize: 11 }, styles.tempValueText]}>{Math.ceil(item?.main?.temp - 272.15)}°</Text>
+                            }
+                            {
+                              weatherOption == 'rain' &&
+                              <Text style={[{ color: '#1a73e8', fontSize: 11 }, styles.tempValueText]}>{item?.pop * 100}%</Text>
+                            }
+                            {
+                              weatherOption == 'wind' &&
+                              <Text style={[{ color: '#757474', fontSize: 9, fontWeight: '500' }, styles.tempValueText]}>{Math.ceil(item.wind.speed * 3.6)} km/s</Text>
+                            }
+                          </View>
+                          <View style={styles.tempLineBox}>
+                            {
+                              weatherOption == 'temperature' &&
+                              <LinearGradient
+                                style={[{ height: (height * 0.03) * (Math.ceil(item?.main?.temp - 272.15) / 50), borderTopWidth: 2, borderTopColor: 'red' }, styles.tempLine]}
+                                colors={["orange", "#fff"]}
+                              />
+                            }
+                            {
+                              weatherOption == 'rain' &&
+                              <View
+                                style={[{ height: (height * 0.03) * item.pop, borderTopWidth: 1, borderTopColor: '#1a73e8', backgroundColor: '#e8f0fe' }, styles.tempLine]}
+                              />
+                            }
+                            {
+                              weatherOption == 'wind' &&
+                              <View
+                                style={{
+                                  transform: [{
+                                    rotate: `${item?.wind.deg}deg`
+                                  }]
+                                }}
+                              >
+                                <Fontisto name="arrow-down" size={20} color="#9aaec0" />
+                              </View>
+                            }
+                            <View />
+                          </View>
+                          <View style={styles.tempTimeBox}>
+                            <Text style={styles.tempTimeText}>{item.dt_txt.split(" ")[1].slice(0, 5)}</Text>
+                          </View>
+                        </View>
+                      )}
+                      style={styles.tempInfoContainer}
+                      horizontal
+                    />
+                  </View>
+                )}
+                horizontal
+                style={styles.weatherGraficContainer}
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>
           </View>
+
+          {/* WEATHER BOTTOM */}
+          <View style={styles.weatherBottomBox}>
+            {
+              weatherData &&
+              <FlatList
+                data={mainData}
+                renderItem={({ item, index }) => (
+                  <Pressable
+                    key={index}
+                    style={[{
+                      backgroundColor: index == activeWeatherIndex ? '#02c39a' : 'rgba(0, 0,0,0)',
+                      borderBottomLeftRadius: index == 0 ? 10 : 0,
+                      borderBottomRightRadius: index == 4 ? 10 : 0
+                    },
+                    styles.weatherBox
+                    ]}
+                    onPress={() => setTargetWeather({ item: item, index: index })}
+                  >
+                    <View style={styles.dayBox}>
+                      <Text style={styles.dayText}>{daysOfWeek[item.date.getDay()]}</Text>
+                    </View>
+
+                    <View style={[{ width: width * 0.18 }, styles.weatherIconBox]}>
+                      <Image style={styles.weatherIcon} source={{ uri: `https://openweathermap.org/img/wn/${item.maxTemp.weather[0].icon}@2x.png` }} />
+                    </View>
+                    <View style={styles.tempBox}>
+                      <Text style={styles.maxTemp}>{Math.ceil(item.maxTemp.main.temp - 272.15)}°</Text>
+                      <Text style={[{ color: activeWeatherIndex == index ? '#fff' : '#757474', }, styles.minTemp]}>{Math.ceil(item.minTemp.main.temp - 272.15)}°</Text>
+                    </View>
+                  </Pressable>
+                )}
+                style={styles.weatherWrapper}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+              />
+            }
+          </View>
+
         </View>
-
-
-        <View style={styles.weatherBottomBox}>
-          {
-            weatherData &&
-            <FlatList
-              data={mainData}
-              renderItem={({ item, index }) => (
-                <Pressable
-                  key={index}
-                  style={[{ backgroundColor: index == activeIndex.index ? '#02c39a' : 'rgba(0, 0,0,0)' }, styles.weatherBox]}
-                  onPress={() => setTargetWeather({ item: item, index: index })}
-                >
-                  <View style={styles.dayBox}>
-                    <Text style={styles.dayText}>{daysOfWeek[item.date.getDay()]}</Text>
-                  </View>
-
-                  <View style={styles.weatherIconBox}>
-                    <Image style={styles.weatherIcon} source={{ uri: `https://openweathermap.org/img/wn/${item.maxTemp.weather[0].icon}@2x.png` }} />
-                  </View>
-                  <View style={styles.tempBox}>
-                    <Text style={styles.maxTemp}>{Math.ceil(item.maxTemp.main.temp - 272.15)}°</Text>
-                    <Text style={[{ color: activeIndex.index == index ? '#fff' : '#757474', }, styles.minTemp]}>{Math.ceil(item.minTemp.main.temp - 272.15)}°</Text>
-                  </View>
-                </Pressable>
-              )}
-              style={styles.weatherWrapper}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-            />
-          }
-        </View>
-
-      </View>
-
+      }
 
       {/* Map */}
 

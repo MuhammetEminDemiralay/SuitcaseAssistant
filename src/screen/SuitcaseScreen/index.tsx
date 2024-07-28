@@ -13,6 +13,7 @@ const { width, height } = Dimensions.get("window")
 
 const SuitcaseScreen = () => {
 
+    const { params } = useRoute();
     const [data, setData] = useState([]);
     const [category, setCategory] = useState<any>([]);
     const [viewable, setViewable] = useState<any>('clothing');
@@ -20,6 +21,8 @@ const SuitcaseScreen = () => {
     const contentFlatlistRef = useRef<any>()
     const contentOnViewRef = useRef((viewableItems: any) => {
         setViewable(viewableItems.viewableItems[0].item)
+        console.log("Ne oluyor");
+
     })
 
     const contentViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
@@ -28,17 +31,20 @@ const SuitcaseScreen = () => {
     const [totalData, setTotalData] = useState(0);
     const [checkData, setCheckData] = useState(0);
     const { allTravelData } = useSelector((state: any) => state.travel);
-    const { params }: any = useRoute();
+
 
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
+
                 if (activeTravelCategory == '') {
                     setActiveTravelCategory(allTravelData[0].key)
                 }
 
                 const travelData = await AsyncStorage.getItem(`${activeTravelCategory}`)
+
                 setActiveData(travelData)
 
                 if (travelData != null) {
@@ -53,14 +59,15 @@ const SuitcaseScreen = () => {
                 throw error
             }
         }
-        setCategory(Object.keys(suitcaseDatas.male.sea))
         fetchData()
+        setCategory(Object.keys(suitcaseDatas.male.sea))
+
 
     }, [activeTravelCategory, viewable, allTravelData])
 
-    useEffect(() => {
-        setActiveTravelCategory(params)
-    }, [params])
+    // useEffect(() => {
+    //     setActiveTravelCategory(params)
+    // }, [params])
 
 
     const [active, setActive] = useState('clothing');
@@ -138,6 +145,10 @@ const SuitcaseScreen = () => {
 
     }
 
+
+
+
+
     return (
         <View style={styles.container}>
             {/* <View style={{ width: width * 0.9, height: height * 0.85, borderWidth: 1, backgroundColor: 'red', left: width * 0.05, position: 'absolute', marginTop: height * 0.075, opacity: 0.2 }}></View> */}
@@ -152,7 +163,10 @@ const SuitcaseScreen = () => {
                             onPress={() => setActiveTravelCategory(item.key)}
                             style={[{ backgroundColor: activeTravelCategory == item.key ? '#02c39a' : 'rgba(255,255,255,0.5)' }, styles.travelCategoryBtn]}
                         >
-                            <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
+                            {
+                                item.code &&
+                                <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
+                            }
                             <Text style={styles.travelCategoryText}>{item.city}</Text>
                         </Pressable>
                     )}

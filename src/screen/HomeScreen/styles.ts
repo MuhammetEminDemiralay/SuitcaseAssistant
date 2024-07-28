@@ -101,11 +101,58 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     weatherContentTopBox: {
-        height: height * 0.050,
-        borderWidth : 0.5
+        height: height * 0.05,
+        flexDirection: 'row',
+    },
+    weatherContentLeftTopBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: width * 0.6,
+        height: '100%',
+    },
+    weatherInfoBox: {
+        width: width * 0.2,
+        height: '100%',
+        justifyContent: 'center'
+    },
+    weatherInfoText: {
+        fontSize: 9,
+        fontWeight: '500',
+    },
+    weatherBigInfoBox: {
+        width: width * 0.2,
+        height: '100%',
+        justifyContent: 'center',
+        paddingRight: 5
+    },
+    temperatureTextBox: {
+        width: width * 0.1,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    temperatureText: {
+        fontSize: 20,
+        fontWeight: '500'
+    },
+    weatherContentRightTopBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: width * 0.3,
+        height: '100%',
+    },
+    temperatureBtnBox: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: width * 0.08,
+        height: width * 0.08,
+        borderRadius: 50,
     },
     weatherContentBottomBox: {
         height: height * 0.070,
+        borderBottomWidth : 2,
+        borderBottomColor : '#fff'
     },
     weatherGraficContainer: {
         height: height * 0.05,
@@ -120,8 +167,6 @@ export const styles = StyleSheet.create({
     tempInfoBox: {
         width: (width * 0.9) / 8,
         height: height * 0.1,
-        borderWidth: 0.5,
-        borderColor : 'gray',
     },
     tempValueBox: {
         width: '100%',
@@ -130,18 +175,18 @@ export const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     tempValueText: {
-        color: '#757474',
-        fontSize: 11
     },
     tempLineBox: {
         width: '100%',
         height: height * 0.03,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     tempLine: {
-        width: (((width * 0.9) / 8) / 2),
+        width: '100%',
         position: 'absolute',
         bottom: 0,
-        left: (((width * 0.9) / 8) / 2) - ((((width * 0.9) / 8) / 2) / 2),
+      
     },
     tempTimeBox: {
         width: '100%',
@@ -151,7 +196,7 @@ export const styles = StyleSheet.create({
     },
     tempTimeText: {
         color: '#757474',
-        fontSize: 11
+        fontSize: 9
     },
     weatherBottomBox: {
         width: '100%',
@@ -160,13 +205,10 @@ export const styles = StyleSheet.create({
     weatherWrapper: {
         width: '100%',
         height: '100%',
-        borderTopWidth : 0.5,
     },
     weatherBox: {
         width: width * 0.18,
         height: height * 0.1,
-        borderBottomLeftRadius : 10,
-        borderBottomRightRadius : 10
     },
     dayBox: {
         width: '100%',
@@ -179,8 +221,9 @@ export const styles = StyleSheet.create({
         fontWeight: '500'
     },
     weatherIconBox: {
-        width: '100%',
-        height: '50%',
+        height: height * 0.05,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     weatherIcon: {
         width: width * 0.18,
@@ -207,7 +250,7 @@ export const styles = StyleSheet.create({
     // MAP
     mapContainer: {
         width: width * 0.9,
-        height: height * 0.3,
+        height: height * 0.28,
         marginTop: height * 0.025,
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: 10,
