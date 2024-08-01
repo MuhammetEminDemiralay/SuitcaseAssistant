@@ -21,17 +21,14 @@ const SuitcaseScreen = () => {
     const contentFlatlistRef = useRef<any>()
     const contentOnViewRef = useRef((viewableItems: any) => {
         setViewable(viewableItems.viewableItems[0].item)
-        console.log("Ne oluyor");
-
     })
 
     const contentViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
-    const [activeTravelCategory, setActiveTravelCategory] = useState<string>("");
-    const [activeData, setActiveData] = useState<any>([])
+    const [activeTravelCategory, setActiveTravelCategory] = useState<any>("");
+    const [activeData, setActiveData] = useState<any>()
     const [totalData, setTotalData] = useState(0);
     const [checkData, setCheckData] = useState(0);
     const { allTravelData } = useSelector((state: any) => state.travel);
-
 
 
     useEffect(() => {
@@ -41,11 +38,14 @@ const SuitcaseScreen = () => {
 
                 if (activeTravelCategory == '') {
                     setActiveTravelCategory(allTravelData[0].key)
+                    if (params != undefined) {
+                        setActiveTravelCategory(params)
+                    }
                 }
 
                 const travelData = await AsyncStorage.getItem(`${activeTravelCategory}`)
 
-                setActiveData(travelData)
+                setActiveData(JSON.parse(`${travelData}`))
 
                 if (travelData != null) {
                     const suitcaseInfo = JSON.parse(travelData)
@@ -65,11 +65,6 @@ const SuitcaseScreen = () => {
 
     }, [activeTravelCategory, viewable, allTravelData])
 
-    // useEffect(() => {
-    //     setActiveTravelCategory(params)
-    // }, [params])
-
-
     const [active, setActive] = useState('clothing');
     const setActiveCategory = (item: any) => {
         setActive(item)
@@ -78,11 +73,14 @@ const SuitcaseScreen = () => {
 
 
     const check = (checkItem: any) => {
+        console.log("data", data);
+
 
         setData((prevData: any) => {
             const updatedCategory = prevData[viewable].map((item: any) =>
                 item.item === checkItem.item ? { ...item, check: checkItem.check ? false : true } : item
             );
+
 
             const setAsync = async () => {
                 await AsyncStorage.setItem(`${activeTravelCategory}`,
@@ -90,8 +88,11 @@ const SuitcaseScreen = () => {
                         gender: activeData.gender,
                         startDate: activeData.startDate,
                         endDate: activeData.endDate,
-                        countryName: 'Turkey',
-                        city: 'İstanbul',
+                        countryName: activeData.countryName,
+                        city: activeData.city,
+                        travelType: activeData.travelType,
+                        code: activeData.code,
+                        key: activeTravelCategory,
                         data: {
                             ...prevData,
                             [viewable]: updatedCategory
@@ -123,8 +124,11 @@ const SuitcaseScreen = () => {
                         gender: activeData.gender,
                         startDate: activeData.startDate,
                         endDate: activeData.endDate,
-                        countryName: 'Turkey',
-                        city: 'İstanbul',
+                        countryName: activeData.countryName,
+                        city: activeData.city,
+                        travelType: activeData.travelType,
+                        code: activeData.code,
+                        key: activeData.key,
                         data: {
                             ...prevData,
                             [viewable]: updatedCategory
@@ -167,7 +171,7 @@ const SuitcaseScreen = () => {
                                 item.code &&
                                 <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
                             }
-                            <Text style={styles.travelCategoryText}>{item.city}</Text>
+                            <Text style={styles.travelCategoryText}>{item.city.name}</Text>
                         </Pressable>
                     )}
                     style={styles.travelCategoryContainer}

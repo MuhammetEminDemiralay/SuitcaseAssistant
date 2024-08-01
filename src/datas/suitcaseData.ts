@@ -121,61 +121,6 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Tent repair kit", check: false }
             ]
         },
-        culture: {
-            clothing: [
-                { item: "Casual shirts", check: false },
-                { item: "T-shirts", check: false },
-                { item: "Smart jacket", check: false },
-                { item: "Pants", check: false },
-                { item: "Shorts", check: false },
-                { item: "Underwear", check: false },
-                { item: "Socks", check: false },
-                { item: "Smart coat", check: false },
-                { item: "Raincoat", check: false },
-                { item: "Hat", check: false },
-                { item: "Glasses", check: false },
-                { item: "Jewelry", check: false }
-            ],
-            food_and_drink: [
-                { item: "Local snacks", check: false },
-                { item: "Water bottle", check: false },
-                { item: "Energy drinks", check: false }
-            ],
-            personal_care: [
-                { item: "Moisturizer", check: false },
-                { item: "Sunscreen", check: false },
-                { item: "Shampoo", check: false },
-                { item: "Conditioner", check: false },
-                { item: "Toothpaste", check: false },
-                { item: "Toothbrush", check: false },
-                { item: "Deodorant", check: false },
-                { item: "Razor", check: false },
-                { item: "Shaving cream", check: false }
-            ],
-            electronics: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Extra memory cards", check: false }
-            ],
-            health_and_first_aid: [
-                { item: "First aid kit", check: false },
-                { item: "Pain relievers", check: false },
-                { item: "Bandages", check: false }
-            ],
-            documents: [
-                { item: "ID and passport", check: false },
-                { item: "City map", check: false },
-                { item: "Hotel reservation details", check: false },
-                { item: "Flight tickets", check: false }
-            ],
-            equipment: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Portable charger", check: false }
-            ]
-        },
         city: {
             clothing: [
                 { item: "T-shirts", check: false },
@@ -478,61 +423,6 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Backpack", check: false },
                 { item: "Flashlight", check: false },
                 { item: "Tent repair kit", check: false }
-            ]
-        },
-        culture: {
-            clothing: [
-                { item: "Casual shirts", check: false },
-                { item: "T-shirts", check: false },
-                { item: "Smart jacket", check: false },
-                { item: "Pants", check: false },
-                { item: "Shorts", check: false },
-                { item: "Underwear", check: false },
-                { item: "Socks", check: false },
-                { item: "Smart coat", check: false },
-                { item: "Raincoat", check: false },
-                { item: "Hat", check: false },
-                { item: "Glasses", check: false },
-                { item: "Jewelry", check: false }
-            ],
-            food_and_drink: [
-                { item: "Local snacks", check: false },
-                { item: "Water bottle", check: false },
-                { item: "Energy drinks", check: false }
-            ],
-            personal_care: [
-                { item: "Moisturizer", check: false },
-                { item: "Sunscreen", check: false },
-                { item: "Shampoo", check: false },
-                { item: "Conditioner", check: false },
-                { item: "Toothpaste", check: false },
-                { item: "Toothbrush", check: false },
-                { item: "Deodorant", check: false },
-                { item: "Razor", check: false },
-                { item: "Shaving cream", check: false }
-            ],
-            electronics: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Extra memory cards", check: false }
-            ],
-            health_and_first_aid: [
-                { item: "First aid kit", check: false },
-                { item: "Pain relievers", check: false },
-                { item: "Bandages", check: false }
-            ],
-            documents: [
-                { item: "ID and passport", check: false },
-                { item: "City map", check: false },
-                { item: "Hotel reservation details", check: false },
-                { item: "Flight tickets", check: false }
-            ],
-            equipment: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Portable charger", check: false }
             ]
         },
         city: {
@@ -841,61 +731,6 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Tent repair kit", check: false }
             ]
         },
-        culture: {
-            clothing: [
-                { item: "Casual shirts", check: false },
-                { item: "T-shirts", check: false },
-                { item: "Smart jackets", check: false },
-                { item: "Pants", check: false },
-                { item: "Shorts", check: false },
-                { item: "Underwear", check: false },
-                { item: "Socks", check: false },
-                { item: "Smart coat", check: false },
-                { item: "Raincoat", check: false },
-                { item: "Hat", check: false },
-                { item: "Glasses", check: false },
-                { item: "Jewelry", check: false }
-            ],
-            food_and_drink: [
-                { item: "Local snacks", check: false },
-                { item: "Water bottle", check: false },
-                { item: "Energy drinks", check: false }
-            ],
-            personal_care: [
-                { item: "Moisturizer", check: false },
-                { item: "Sunscreen", check: false },
-                { item: "Shampoo", check: false },
-                { item: "Conditioner", check: false },
-                { item: "Toothpaste", check: false },
-                { item: "Toothbrush", check: false },
-                { item: "Deodorant", check: false },
-                { item: "Razor", check: false },
-                { item: "Shaving cream", check: false }
-            ],
-            electronics: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Extra memory cards", check: false }
-            ],
-            health_and_first_aid: [
-                { item: "First aid kit", check: false },
-                { item: "Pain relievers", check: false },
-                { item: "Bandages", check: false }
-            ],
-            documents: [
-                { item: "ID and passport", check: false },
-                { item: "City map", check: false },
-                { item: "Hotel reservation details", check: false },
-                { item: "Flight tickets", check: false }
-            ],
-            equipment: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Portable charger", check: false }
-            ]
-        },
         city: {
             clothing: [
                 { item: "T-shirts", check: false },
@@ -1201,61 +1036,6 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Backpack", check: false },
                 { item: "Flashlight", check: false },
                 { item: "Tent repair kit", check: false }
-            ]
-        },
-        culture: {
-            clothing: [
-                { item: "Casual shirts", check: false },
-                { item: "T-shirts", check: false },
-                { item: "Smart jackets", check: false },
-                { item: "Pants", check: false },
-                { item: "Shorts", check: false },
-                { item: "Underwear", check: false },
-                { item: "Socks", check: false },
-                { item: "Smart coat", check: false },
-                { item: "Raincoat", check: false },
-                { item: "Hat", check: false },
-                { item: "Glasses", check: false },
-                { item: "Jewelry", check: false }
-            ],
-            food_and_drink: [
-                { item: "Local snacks", check: false },
-                { item: "Water bottle", check: false },
-                { item: "Energy drinks", check: false }
-            ],
-            personal_care: [
-                { item: "Moisturizer", check: false },
-                { item: "Sunscreen", check: false },
-                { item: "Shampoo", check: false },
-                { item: "Conditioner", check: false },
-                { item: "Toothpaste", check: false },
-                { item: "Toothbrush", check: false },
-                { item: "Deodorant", check: false },
-                { item: "Razor", check: false },
-                { item: "Shaving cream", check: false }
-            ],
-            electronics: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Extra memory cards", check: false }
-            ],
-            health_and_first_aid: [
-                { item: "First aid kit", check: false },
-                { item: "Pain relievers", check: false },
-                { item: "Bandages", check: false }
-            ],
-            documents: [
-                { item: "ID and passport", check: false },
-                { item: "City map", check: false },
-                { item: "Hotel reservation details", check: false },
-                { item: "Flight tickets", check: false }
-            ],
-            equipment: [
-                { item: "Phone", check: false },
-                { item: "Charger", check: false },
-                { item: "Camera", check: false },
-                { item: "Portable charger", check: false }
             ]
         },
         city: {

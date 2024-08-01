@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
         height: height * 0.09,
         borderRadius: 50,
         alignItems: 'center',
-        paddingTop: 10
+        justifyContent: 'center',
     },
 
 
@@ -151,8 +151,8 @@ export const styles = StyleSheet.create({
     },
     weatherContentBottomBox: {
         height: height * 0.070,
-        borderBottomWidth : 2,
-        borderBottomColor : '#fff'
+        borderBottomWidth: 2,
+        borderBottomColor: '#fff'
     },
     weatherGraficContainer: {
         height: height * 0.05,
@@ -186,7 +186,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         position: 'absolute',
         bottom: 0,
-      
+
     },
     tempTimeBox: {
         width: '100%',
@@ -250,21 +250,41 @@ export const styles = StyleSheet.create({
     // MAP
     mapContainer: {
         width: width * 0.9,
-        height: height * 0.28,
+        height: height * 0.30,
         marginTop: height * 0.025,
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
-        borderRadius: 10,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderRadius : 10
+    },
+    mapViewContainer: {
+        width: '98%',
+        height: '97%',
+    },
+    earthWrapperIconBox: {
+        width: height * 0.08,
+        height: height * 0.08,
+        borderRadius: 50,
+        backgroundColor: '#3e5c76',
+        position: 'absolute',
+        top: 5,
+        right: 5,
+        zIndex: 2,
+    },
+    earthIconBox: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        borderRadius: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 2,
+        borderColor: '#fff'
+    },
+    earthIcon: {
+
     },
 
-
-    suitcase: {
-
-    },
-    earth: {
-
-    },
 
 
     noteContainer: {
@@ -276,10 +296,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.75)',
         borderRadius: 10
     },
-    mapViewContainer: {
-        width: '95%',
-        height: '95%',
-    }
+
 
 
 }) 

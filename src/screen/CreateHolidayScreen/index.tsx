@@ -12,7 +12,7 @@ import { cityDatas } from '../../datas/cityDatas';
 import uuid from 'react-native-uuid'
 import { suitcaseDatas } from '../../datas/suitcaseData';
 import { useDispatch } from 'react-redux';
-import { setAllTravelData, setState } from '../../redux/travelSlice';
+import { setActiveTabBar, setAllTravelData, setState } from '../../redux/travelSlice';
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("window");
@@ -95,18 +95,20 @@ const CreateHolidayScreen = () => {
 
   const [value, setValue] = useState(null);
   const [flagCode, setFlagCode] = useState<string>("TR")
-  const [targetCitys, setTargetCitys] = useState<[]>([]);
+  const [targetCitys, setTargetCitys] = useState<any>([]);
+  const [targetCity, setTargetCity] = useState<City>();
   const [targetCountry, setTargetCountry] = useState("Turkey");
 
   const countryDropDownChange = (event: any) => {
     setFlagCode(event.code)
-    console.log(cityDatas.find(item => item.countryName == event.name)?.city);
     setTargetCountry(event.name)
+    const data = cityDatas.find((item: any) => item.countryName == event.name)
+    setTargetCitys(data)
   }
 
   const cityDropDownChange = (event: any) => {
-    console.log("City", event);
-
+    const { coord, name, placeCategory } = event
+    setTargetCity({ coord, name, placeCategory })
   }
 
 
@@ -147,6 +149,8 @@ const CreateHolidayScreen = () => {
 
 
   const create = async () => {
+
+
     if (gender != null && startDate != undefined && endDate != undefined && travel != null && flagCode != "") {
       let uid = uuid.v4()
       const data = {
@@ -154,19 +158,23 @@ const CreateHolidayScreen = () => {
         startDate: startDate,
         endDate: endDate,
         travelType: travel,
-        countryName: 'Turkey',
-        city: 'İstanbul',
+        countryName: targetCountry,
+        city: targetCity,
         code: flagCode,
         key: uid,
         data: suitcaseDatas[gender][travel.item.toLocaleLowerCase()]
       }
+
       await AsyncStorage.setItem(`${uid}`, JSON.stringify(data))
       dispatch(setAllTravelData(data))
+      dispatch(setActiveTabBar('suitcase'))
       navigation.navigate("suitcase")
     }
 
     dispatch(setState())
+
   }
+
 
   return (
     <View style={styles.container}>
@@ -310,10 +318,10 @@ const CreateHolidayScreen = () => {
             style={styles.dropdown}
             containerStyle={styles.dropdownContainer}
             search
-            data={cityDatas}
+            data={cityDatas[0].city}
             onChange={(event: any) => cityDropDownChange(event)}
-            labelField="city"
-            valueField="city"
+            labelField='name'
+            valueField='name'
             value={value}
             mode='modal'
             placeholder='City'
@@ -326,6 +334,7 @@ const CreateHolidayScreen = () => {
               <MaterialCommunityIcons name="menu-down" size={30} color="black" />
             )}
           />
+
         </View>
       </View>
 
@@ -351,8 +360,7 @@ const CreateHolidayScreen = () => {
                   item.id == 2 ? require("../../datas/holidayCategoryImage/2.jpg") :
                     item.id == 3 ? require("../../datas/holidayCategoryImage/3.jpg") :
                       item.id == 4 ? require("../../datas/holidayCategoryImage/4.jpg") :
-                        item.id == 5 ? require("../../datas/holidayCategoryImage/5.jpg") :
-                          item.id == 6 ? require("../../datas/holidayCategoryImage/6.jpg") : null
+                        item.id == 5 ? require("../../datas/holidayCategoryImage/5.jpg") : null
               }
             />
           )}

@@ -19,18 +19,20 @@ const HomeScreen = () => {
   const navigation: any = useNavigation();
 
   const [weatherData, setWeatherData] = useState<any>([]);
-  const [cityData, setCityData] = useState();
   const [mainData, setMainData] = useState<any>();
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
 
+  const [activeKey, setActiveKey] = useState("");
+  const [viewableItem, setViewableItem] = useState<any>()
+
   const contentViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
   const contentFlatlistRef = useRef<any>()
   const contentOnViewRef = useRef((viewableItems: any) => {
     setActiveKey(viewableItems.viewableItems[0].key)
-
+    setViewableItem(viewableItems.viewableItems[0].item)
     const startDate = new Date(viewableItems?.viewableItems[0]?.item?.startDate)
     const endDate = new Date(viewableItems?.viewableItems[0]?.item?.endDate)
     setStartDate(`${startDate.getDate() < 9 ? 0 : ""}${startDate.getDate()} ${startDate.getMonth() < 9 ? 0 : ""}${startDate.getMonth() + 1} ${startDate.getFullYear()}`)
@@ -55,13 +57,10 @@ const HomeScreen = () => {
     getAllAsyncStorageData()
 
 
-    console.log(allTravelData);
-
-
     const fetchWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=Istanbul&appid=406ac31f986f7082f58ba38065f856eb`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${viewableItem?.city?.name}&appid=406ac31f986f7082f58ba38065f856eb`
         );
 
         const data = await response.json();
@@ -102,7 +101,7 @@ const HomeScreen = () => {
 
         setActiveWeatherItem(mainData[0])
         setMainData(mainData)
-        setCityData(data.city);
+
         setWeatherData(fullDatas);
 
       } catch (error) {
@@ -112,22 +111,12 @@ const HomeScreen = () => {
 
     fetchWeatherData();
 
-  }, [])
-
-  console.log(allTravelData);
+  }, [viewableItem])
 
 
-
-  const [active, setActive] = useState("suitcase")
-  const [activeKey, setActiveKey] = useState("");
-
-  const activeRoute = () => {
-    active == 'suitcase' ? setActive('earth') : setActive('suitcase')
-  }
-
-  const route = () => {
-    dispatch(setActiveTabBar(`${active}`))
-    navigation.navigate(`${active}`, activeKey)
+  const route = (item: string) => {
+    dispatch(setActiveTabBar(`${item}`))
+    navigation.navigate(`${item}`, activeKey)
   }
 
 
@@ -145,9 +134,10 @@ const HomeScreen = () => {
   const [weatherOption, setWeatherOption] = useState("temperature")
 
 
+
   return (
     <View style={styles.container}>
-      <View style={{ width: '100%', height: height * 0.85, borderWidth: 0.5, position: 'absolute', marginTop: height * 0.075 }}></View>
+      <View style={{ width: '100%', height: height * 0.87, borderWidth: 0.5, position: 'absolute', marginTop: height * 0.075 }}></View>
 
 
       {/* Info */}
@@ -164,7 +154,7 @@ const HomeScreen = () => {
                   <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
                 }
                 <Text style={styles.cityText}>{item.countryName} -</Text>
-                <Text style={styles.cityText}>{item.city}</Text>
+                <Text style={styles.cityText}>{item.city.name}</Text>
               </View>
               <View style={styles.contentWrapper}>
 
@@ -201,33 +191,12 @@ const HomeScreen = () => {
               },
               styles.currentTravelBtn
             ]}
-            onPress={() => route()}
-            onLongPress={() => activeRoute()}
+            onPress={() => route("suitcase")}
           >
-            <View
-              style={[
-                {
-                  position: active == 'suitcase' ? 'relative' : 'absolute',
-                  bottom: active == 'suitcase' ? 0 : 5,
-                },
-                styles.suitcase]}>
-              <FontAwesome6
-                name="suitcase-rolling"
-                size={active == 'suitcase' ? 30 : 20}
-                color={active == 'suitcase' ? 'black' : 'gray'}
-              />
-            </View>
-
-            <Ionicons
-              style={[
-                {
-                  position: active == 'earth' ? 'relative' : 'absolute',
-                  bottom: active == 'earth' ? 0 : 5
-
-                }, styles.earth]}
-              name="earth"
-              size={active == 'earth' ? 35 : 20}
-              color={active == 'earth' ? 'black' : 'gray'}
+            <FontAwesome6
+              name="suitcase-rolling"
+              size={30}
+              color='black'
             />
           </Pressable>
         </View>
@@ -254,13 +223,13 @@ const HomeScreen = () => {
                     <Text style={styles.temperatureText}>{Math.ceil(activeWeatherItem.maxTemp.main.temp - 272.15)}°</Text>
                   </View>
                   <View style={styles.weatherInfoBox}>
-                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>Rain : {activeWeatherItem.maxTemp.pop * 100}%</Text>
+                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>Rain : {Math.ceil(activeWeatherItem.maxTemp.pop * 100)}%</Text>
                     <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>Humidity : {activeWeatherItem.maxTemp.main.humidity}%</Text>
                     <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>Wind : {Math.ceil(activeWeatherItem.maxTemp.wind.speed * 3.6)}km/s</Text>
                   </View>
                   <View style={styles.weatherBigInfoBox}>
-                    <Text style={[{ color: '#000814' }, styles.weatherInfoText]}>Rize</Text>
-                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>{daysOfWeek[activeWeatherIndex]}</Text>
+                    <Text style={[{ color: '#000814' }, styles.weatherInfoText]}>{viewableItem?.city.name}</Text>
+                    <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>{daysOfWeek[activeWeatherItem.date.getDay()]}</Text>
                     <Text style={[{ color: '#757474' }, styles.weatherInfoText]}>{activeWeatherItem.maxTemp.weather[0].description}</Text>
                   </View>
                 </View>
@@ -324,7 +293,7 @@ const HomeScreen = () => {
                             }
                             {
                               weatherOption == 'rain' &&
-                              <Text style={[{ color: '#1a73e8', fontSize: 11 }, styles.tempValueText]}>{item?.pop * 100}%</Text>
+                              <Text style={[{ color: '#1a73e8', fontSize: 11 }, styles.tempValueText]}>{Math.ceil(item?.pop * 100)}%</Text>
                             }
                             {
                               weatherOption == 'wind' &&
@@ -421,12 +390,35 @@ const HomeScreen = () => {
 
       <View style={styles.mapContainer}>
 
+        <Pressable onPress={() => route("earth")} style={styles.earthWrapperIconBox}>
+          <View style={styles.earthIconBox}>
+            <Ionicons style={styles.earthIcon} name="earth" size={height * 0.04} color="black" />
+          </View>
+        </Pressable>
+        {
+          viewableItem != undefined &&
+          <MapView
+            style={styles.mapViewContainer}
+            initialRegion={{
+              latitude: viewableItem.city.coord.latitude,
+              longitude: viewableItem.city.coord.longitude,
+              latitudeDelta: 0.1,
+              longitudeDelta: 0.1
+            }}
+            region={{
+              latitude: viewableItem.city.coord.latitude,
+              longitude: viewableItem.city.coord.longitude,
+              latitudeDelta: 0.2,
+              longitudeDelta: 0.2
+            }}
+          />
+        }
       </View>
 
 
+      {/* NOTES */}
       <View style={styles.noteContainer}>
         <Text style={{ fontSize: 25, fontWeight: '500' }}>Note</Text>
-
       </View>
 
 
