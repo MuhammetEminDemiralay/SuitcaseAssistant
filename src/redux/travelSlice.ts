@@ -21,6 +21,12 @@ const travelSlice = createSlice({
             state.allTravelData = [...state.allTravelData, { ...action.payload, startDate: new Date(action.payload.startDate), endDate: new Date(action.payload.endDate) }]
             state.allTravelData = state.allTravelData.sort((a, b) => a.startDate - b.startDate)
         },
+        updateAllTravelData: (state, action) => {
+                const updatedData = state.allTravelData.map((item) =>
+                    item.key == action.payload?.key ? action.payload : item
+                )
+                state.allTravelData = updatedData
+        },
         setState: (state) => {
             state.updateState = true;
         },
@@ -31,4 +37,4 @@ const travelSlice = createSlice({
 })
 
 export default travelSlice.reducer
-export const { setAllTravelData, setState, setActiveTabBar } = travelSlice.actions
+export const { updateAllTravelData, setAllTravelData, setState, setActiveTabBar } = travelSlice.actions

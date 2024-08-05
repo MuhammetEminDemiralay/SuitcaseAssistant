@@ -6,7 +6,7 @@ import { FontAwesome5, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setAllTravelData } from '../../redux/travelSlice';
+import { setAllTravelData, updateAllTravelData } from '../../redux/travelSlice';
 
 const { width, height } = Dimensions.get("window")
 
@@ -43,25 +43,13 @@ const TravelScreen = () => {
     }
 
     useEffect(() => {
-        console.log(allTravelData);
-
-        const getAllAsyncStorageData = async () => {
-            const keys = await AsyncStorage.getAllKeys()
-
-            if (keys.length != allTravelData.length) {
-                for (let key of keys) {
-                    const data = await AsyncStorage.getItem(key)
-                    if (data != null) {
-                        dispatch(setAllTravelData(JSON.parse(data)))
-                    }
-                }
-            }
+        if (activeItem != undefined) {
+            dispatch(updateAllTravelData(activeItem))
         }
-        getAllAsyncStorageData()
     }, [activeItem])
 
     const check = (checkItem: any) => {
-        
+
         setActiveItem((prevData: any) => {
 
             const categoryItems = prevData.city.placeCategory[activeCategory];
@@ -73,6 +61,7 @@ const TravelScreen = () => {
 
 
             const setAsyncStorage = async () => {
+
                 await AsyncStorage.setItem(`${activeItem.key}`, JSON.stringify({
                     ...prevData,
                     city: {
