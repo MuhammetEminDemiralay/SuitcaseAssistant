@@ -4,9 +4,10 @@ import { styles } from './styles'
 import { suitcaseDatas } from '../../datas/suitcaseData'
 import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CountryFlag from 'react-native-country-flag';
 import { useRoute } from '@react-navigation/native';
+import { setActiveData, setActiveTravelCategory } from '../../redux/travelSlice';
 
 
 const { width, height } = Dimensions.get("window")
@@ -14,9 +15,10 @@ const { width, height } = Dimensions.get("window")
 const SuitcaseScreen = () => {
 
     const { params } = useRoute();
-    const [data, setData] = useState([]);
     const [category, setCategory] = useState<any>([]);
     const [viewable, setViewable] = useState<any>('clothing');
+
+    const dispatch: any = useDispatch();
 
     const contentFlatlistRef = useRef<any>()
     const contentOnViewRef = useRef((viewableItems: any) => {
@@ -24,11 +26,9 @@ const SuitcaseScreen = () => {
     })
 
     const contentViewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 })
-    const [activeTravelCategory, setActiveTravelCategory] = useState<any>("");
-    const [activeData, setActiveData] = useState<any>()
     const [totalData, setTotalData] = useState(0);
     const [checkData, setCheckData] = useState(0);
-    const { allTravelData } = useSelector((state: any) => state.travel);
+    const { allTravelData, activeData, activeTravelCategory } = useSelector((state: any) => state.travel);
 
 
     useEffect(() => {
@@ -37,20 +37,19 @@ const SuitcaseScreen = () => {
             try {
 
                 if (activeTravelCategory == '') {
-                    setActiveTravelCategory(allTravelData[0].key)
+                    dispatch(setActiveTravelCategory(allTravelData[0].key))
                     if (params != undefined) {
-                        setActiveTravelCategory(params)
+                        dispatch(setActiveTravelCategory(params))
                     }
                 }
 
                 const travelData = await AsyncStorage.getItem(`${activeTravelCategory}`)
 
-                setActiveData(JSON.parse(`${travelData}`))
-
                 if (travelData != null) {
                     const suitcaseInfo = JSON.parse(travelData)
                     if (Object.keys(suitcaseInfo).length != 0) {
-                        setData(suitcaseInfo.data)
+
+                        dispatch(setActiveData(suitcaseInfo))
                         setTotalData(suitcaseInfo.data[viewable].length)
                         setCheckData(suitcaseInfo.data[viewable].filter((item: any) => item.check == true).length)
                     }
@@ -62,8 +61,8 @@ const SuitcaseScreen = () => {
         fetchData()
         setCategory(Object.keys(suitcaseDatas.male.sea))
 
+    }, [activeTravelCategory, viewable])
 
-    }, [activeTravelCategory, viewable, allTravelData])
 
     const [active, setActive] = useState('clothing');
     const setActiveCategory = (item: any) => {
@@ -73,80 +72,59 @@ const SuitcaseScreen = () => {
 
 
     const check = (checkItem: any) => {
-        console.log("data", data);
+        const updatedCategory = activeData?.data[viewable].map((item: any) =>
+            item.item === checkItem.item ? { ...item, check: checkItem.check ? false : true } : item
+        );
 
-
-        setData((prevData: any) => {
-            const updatedCategory = prevData[viewable].map((item: any) =>
-                item.item === checkItem.item ? { ...item, check: checkItem.check ? false : true } : item
-            );
-
-
-            const setAsync = async () => {
-                await AsyncStorage.setItem(`${activeTravelCategory}`,
-                    JSON.stringify({
-                        gender: activeData.gender,
-                        startDate: activeData.startDate,
-                        endDate: activeData.endDate,
-                        countryName: activeData.countryName,
-                        city: activeData.city,
-                        travelType: activeData.travelType,
-                        code: activeData.code,
-                        key: activeTravelCategory,
-                        data: {
-                            ...prevData,
-                            [viewable]: updatedCategory
-                        }
-                    }))
-                setCheckData(updatedCategory.filter((item: any) => item.check == true).length)
-                setTotalData(updatedCategory.length)
-
-            }
-            setAsync();
-
-            return {
-                ...prevData,
+        dispatch(setActiveData({
+            ...activeData,
+            data: {
+                ...activeData.data,
                 [viewable]: updatedCategory
-            };
-        });
+            }
+        }))
 
+        const setAsync = async () => {
+            await AsyncStorage.setItem(`${activeTravelCategory}`,
+                JSON.stringify({
+                    ...activeData,
+                    data: {
+                        ...activeData.data,
+                        [viewable]: updatedCategory
+                    }
+                }))
+            setCheckData(updatedCategory.filter((item: any) => item.check == true).length)
+            setTotalData(updatedCategory.length)
+        }
+        setAsync();
     }
 
     const selectAll = (option: any) => {
-        setData((prevData: any) => {
-            const updatedCategory = prevData[viewable].map((item: any) =>
-                item.check == option ? { ...item, check: !option } : item
-            );
+        const updatedCategory = activeData?.data[viewable].map((item: any) =>
+            item.check == option ? { ...item, check: !option } : item
+        );
 
-            const setAsync = async () => {
-                await AsyncStorage.setItem(`${activeTravelCategory}`,
-                    JSON.stringify({
-                        gender: activeData.gender,
-                        startDate: activeData.startDate,
-                        endDate: activeData.endDate,
-                        countryName: activeData.countryName,
-                        city: activeData.city,
-                        travelType: activeData.travelType,
-                        code: activeData.code,
-                        key: activeData.key,
-                        data: {
-                            ...prevData,
-                            [viewable]: updatedCategory
-                        }
-                    }))
-                setCheckData(updatedCategory.filter((item: any) => item.check == true).length)
-                setTotalData(updatedCategory.length)
-
-            }
-            setAsync();
-
-            return {
-                ...prevData,
+        dispatch(setActiveData({
+            ...activeData,
+            data: {
+                ...activeData.data,
                 [viewable]: updatedCategory
-            };
+            }
+        }))
 
-        })
-
+        const setAsync = async () => {
+            await AsyncStorage.setItem(`${activeTravelCategory}`,
+                JSON.stringify({
+                    ...activeData,
+                    data: {
+                        ...activeData.data,
+                        [viewable]: updatedCategory
+                    }
+                }))
+            setCheckData(updatedCategory.filter((item: any) => item.check == true).length)
+            setTotalData(updatedCategory.length)
+        }
+        setAsync();
     }
 
 
@@ -155,16 +133,15 @@ const SuitcaseScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* <View style={{ width: width * 0.9, height: height * 0.85, borderWidth: 1, backgroundColor: 'red', left: width * 0.05, position: 'absolute', marginTop: height * 0.075, opacity: 0.2 }}></View> */}
+            {/* <View style={{ width: width * 0.9, height: height * 0.875, borderWidth: 1, backgroundColor: 'red', left: width * 0.05, position: 'absolute', marginTop: height * 0.075, opacity: 0.2 }}></View> */}
 
             <View >
-
                 <FlatList
                     data={allTravelData}
                     renderItem={({ item, index }) => (
                         <Pressable
                             key={index}
-                            onPress={() => setActiveTravelCategory(item.key)}
+                            onPress={() => dispatch(setActiveTravelCategory(item.key))}
                             style={[{ backgroundColor: activeTravelCategory == item.key ? '#02c39a' : 'rgba(255,255,255,0.5)' }, styles.travelCategoryBtn]}
                         >
                             {
@@ -182,7 +159,15 @@ const SuitcaseScreen = () => {
                 <FlatList
                     data={category}
                     renderItem={({ item, index }) => (
-                        <>
+                        <View style={{ justifyContent: 'center' }}>
+                            <View style={styles.badgeBox}>
+                                <Text style={styles.badgeText}>
+                                    {
+                                        activeData?.data?.[item] != undefined &&
+                                        activeData.data[item].filter((item: any) => item.check == false).length
+                                    }
+                                </Text>
+                            </View>
                             <Pressable
                                 style={({ pressed }) => [
                                     {
@@ -221,16 +206,13 @@ const SuitcaseScreen = () => {
                                     <Entypo name="tools" size={28} color={item == active ? '#fff' : 'black'} />
                                 }
                             </Pressable>
-                        </>
+                        </View >
                     )}
                     horizontal
                     contentContainerStyle={styles.categoryContainer}
                     scrollEnabled={false}
                     showsHorizontalScrollIndicator={false}
                 />
-
-
-
 
                 <FlatList
                     ref={contentFlatlistRef}
@@ -245,7 +227,7 @@ const SuitcaseScreen = () => {
                                 <View style={{ flexDirection: 'column' }}>
 
                                     <FlatList
-                                        data={data[viewable]}
+                                        data={activeData?.data?.[viewable]}
                                         renderItem={({ item, index }) => (
                                             <View
                                                 key={index}
@@ -309,9 +291,6 @@ const SuitcaseScreen = () => {
                     viewabilityConfig={contentViewConfigRef.current}
                     scrollEnabled={false}
                 />
-
-
-
             </View>
         </View >
     )

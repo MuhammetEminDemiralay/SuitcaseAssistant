@@ -6,7 +6,7 @@ import { FontAwesome5, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setAllTravelData, updateAllTravelData } from '../../redux/travelSlice';
+import { setActiveData, setActiveTravelCategory, setAllTravelData, updateAllTravelData } from '../../redux/travelSlice';
 
 const { width, height } = Dimensions.get("window")
 
@@ -14,108 +14,101 @@ const TravelScreen = () => {
 
     const travelCategory = [{ name: "sea", icon: "umbrella-beach" }, { name: "nature", icon: "tree" }, { name: "city", icon: "city" }, { name: "camp", icon: "campground" }, { name: "ski", icon: "skiing" }]
     const [activeCategory, setActiveCategory] = useState("sea")
-    const { allTravelData } = useSelector((state: any) => state.travel);
+    const { allTravelData, activeData, activeTravelCategory } = useSelector((state: any) => state.travel);
     const dispatch: any = useDispatch();
 
-    const [activeItem, setActiveItem] = useState<any>()
     const [activeIndex, setActiveIndex] = useState<any>()
-    const travelRef = useRef<any>()
+    const travelFlatlistRef = useRef<any>()
     const onViewTravelRef = useRef((viewableItems: any) => {
-        setActiveItem(viewableItems.viewableItems[0].item)
+        dispatch(setActiveData(viewableItems.viewableItems[0].item))
+        dispatch(setActiveTravelCategory(viewableItems.viewableItems[0].key))
         setActiveIndex(viewableItems.viewableItems[0].index)
     })
 
     const previousTravelItem = () => {
         if (activeIndex == 0) {
-            travelRef.current.scrollToIndex({ index: allTravelData.length - 1, animated: true })
+            travelFlatlistRef.current.scrollToIndex({ index: allTravelData.length - 1, animated: true })
         }
         else {
-            travelRef.current.scrollToIndex({ index: activeIndex - 1, animated: true })
+            travelFlatlistRef.current.scrollToIndex({ index: activeIndex - 1, animated: true })
         }
     }
 
     const nextTravelItem = () => {
         if (activeIndex == allTravelData.length - 1) {
-            travelRef.current.scrollToIndex({ index: 0, animated: true })
+            travelFlatlistRef.current.scrollToIndex({ index: 0, animated: true })
         } else {
-            travelRef.current.scrollToIndex({ index: activeIndex + 1, animated: true })
+            travelFlatlistRef.current.scrollToIndex({ index: activeIndex + 1, animated: true })
         }
     }
 
     useEffect(() => {
-        if (activeItem != undefined) {
-            dispatch(updateAllTravelData(activeItem))
+        if (activeData != undefined) {
+            dispatch(updateAllTravelData(activeData))
         }
-    }, [activeItem])
+        travelFlatlistRef.current.scrollToItem({ item: allTravelData.find((item: any) => item.key == activeTravelCategory) })
+    }, [activeData, activeTravelCategory])
 
-    const check = (checkItem: any) => {
+    const check = (itemIndex: any) => {
 
-        setActiveItem((prevData: any) => {
+        const categoryItems = activeData.city.placeCategory[activeCategory];
+        const updatedData = categoryItems.map((item: any, index: any) => {
+            return itemIndex == index ? { ...item, check: !item.check } : item
+        })
 
-            const categoryItems = prevData.city.placeCategory[activeCategory];
-
-
-            const updatedData = categoryItems.map((item: any) => {
-                return checkItem.name == item.name ? { ...item, check: !item.check } : item
-            })
-
-
-            const setAsyncStorage = async () => {
-
-                await AsyncStorage.setItem(`${activeItem.key}`, JSON.stringify({
-                    ...prevData,
-                    city: {
-                        ...prevData.city,
-                        placeCategory: {
-                            ...prevData.city.placeCategory,
-                            [activeCategory]: updatedData
-                        }
-                    }
-                }))
+        dispatch(setActiveData({
+            ...activeData,
+            city: {
+                ...activeData.city,
+                placeCategory: {
+                    ...activeData.city.placeCategory,
+                    [activeCategory]: updatedData
+                }
             }
-            setAsyncStorage()
+        }))
 
-            return {
-                ...prevData,
+        const setAsyncStorage = async () => {
+            await AsyncStorage.setItem(`${activeData.key}`, JSON.stringify({
+                ...activeData,
                 city: {
-                    ...prevData.city,
+                    ...activeData.city,
                     placeCategory: {
-                        ...prevData.city.placeCategory,
+                        ...activeData.city.placeCategory,
                         [activeCategory]: updatedData
                     }
                 }
-            }
-        })
 
+            }))
+        }
+        setAsyncStorage()
     }
 
 
     return (
         <View style={styles.container}>
-            <View style={{ width: '100%', height: height * 0.945, borderWidth: 1, position: 'absolute', marginTop: height * 0.075 }}></View>
 
             <View style={styles.mapContainer}
             >
                 {
-                    activeItem != undefined &&
+                    activeData?.city != undefined &&
                     <MapView
                         style={styles.mapViewContainer}
                         initialRegion={{
-                            latitude: activeItem.city.coord.latitude,
-                            longitude: activeItem.city.coord.longitude,
+                            latitude: activeData.city.coord.latitude,
+                            longitude: activeData.city.coord.longitude,
                             latitudeDelta: 0.1,
                             longitudeDelta: 0.1
                         }}
                         region={{
-                            latitude: activeItem.city.coord.latitude,
-                            longitude: activeItem.city.coord.longitude,
+                            latitude: activeData.city.coord.latitude,
+                            longitude: activeData.city.coord.longitude,
                             latitudeDelta: 0.1,
                             longitudeDelta: 0.1
                         }}
                     >
                         {   // SEA
-                            activeItem.city.placeCategory.sea != undefined && activeItem.city.placeCategory.sea != null &&
-                            activeItem.city.placeCategory.sea.map((item: any, index: any) => (
+                            activeData.city.placeCategory.sea != undefined && activeData.city.placeCategory.sea != null &&
+                            activeData.city.placeCategory.sea.map((item: any, index: any) => (
                                 <Marker
                                     key={index}
                                     coordinate={{
@@ -130,8 +123,8 @@ const TravelScreen = () => {
                             ))
                         }
                         {   // NATURE
-                            activeItem.city.placeCategory.nature != undefined && activeItem.city.placeCategory.nature != null &&
-                            activeItem.city.placeCategory.nature.map((item: any, index: any) => (
+                            activeData.city.placeCategory.nature != undefined && activeData.city.placeCategory.nature != null &&
+                            activeData.city.placeCategory.nature.map((item: any, index: any) => (
                                 <Marker
                                     key={index}
                                     coordinate={{
@@ -146,8 +139,8 @@ const TravelScreen = () => {
                             ))
                         }
                         {   // CİTY
-                            activeItem.city.placeCategory.city != undefined && activeItem.city.placeCategory.city != null &&
-                            activeItem.city.placeCategory.city.map((item: any, index: any) => (
+                            activeData.city.placeCategory.city != undefined && activeData.city.placeCategory.city != null &&
+                            activeData.city.placeCategory.city.map((item: any, index: any) => (
                                 <Marker
                                     key={index}
                                     coordinate={{
@@ -162,8 +155,8 @@ const TravelScreen = () => {
                             ))
                         }
                         { // CAMP
-                            activeItem.city.placeCategory.camp != undefined && activeItem.city.placeCategory.camp != null &&
-                            activeItem.city.placeCategory.camp.map((item: any, index: any) => (
+                            activeData.city.placeCategory.camp != undefined && activeData.city.placeCategory.camp != null &&
+                            activeData.city.placeCategory.camp.map((item: any, index: any) => (
                                 <Marker
                                     key={index}
                                     coordinate={{
@@ -178,8 +171,8 @@ const TravelScreen = () => {
                             ))
                         }
                         {  // SKİ
-                            activeItem.city.placeCategory.ski != undefined && activeItem.city.placeCategory.ski != null &&
-                            activeItem.city.placeCategory.ski.map((item: any, index: any) => (
+                            activeData.city.placeCategory.ski != undefined && activeData.city.placeCategory.ski != null &&
+                            activeData.city.placeCategory.ski.map((item: any, index: any) => (
                                 <Marker
                                     key={index}
                                     coordinate={{
@@ -214,7 +207,7 @@ const TravelScreen = () => {
                         </View>
 
                         <FlatList
-                            ref={travelRef}
+                            ref={travelFlatlistRef}
                             data={allTravelData}
                             renderItem={({ item, index }) => (
                                 <View style={styles.placeHeaderBox}>
@@ -242,9 +235,9 @@ const TravelScreen = () => {
 
                     <View style={styles.placeContentContainer}>
                         {
-                            activeItem != undefined &&
+                            activeData != undefined &&
                             <FlatList
-                                data={activeItem.city.placeCategory[activeCategory]}
+                                data={activeData?.city?.placeCategory?.[activeCategory]}
                                 renderItem={({ item, index }) => (
                                     <View style={styles.placeContentBox}>
                                         <View style={styles.placeContentTextBox}>
@@ -253,7 +246,7 @@ const TravelScreen = () => {
                                         <View style={styles.placeBtnGroupBox}>
                                             <Pressable
                                                 style={styles.placeBtnBox}
-                                                onPress={() => check(item)}
+                                                onPress={() => check(index)}
                                             >
                                                 {
                                                     item.check == false &&

@@ -4,13 +4,19 @@ import { createSlice } from "@reduxjs/toolkit";
 type Model = {
     allTravelData: any[],
     updateState: boolean,
-    activeTabBar: string
+    activeTabBar: string,
+    tabBarVisible: boolean,
+    activeData: any,
+    activeTravelCategory: string
 }
 
 const initialState: Model = {
     allTravelData: [],
     updateState: false,
-    activeTabBar: 'home'
+    activeTabBar: 'home',
+    tabBarVisible: true,
+    activeData: {},
+    activeTravelCategory: ""
 }
 
 const travelSlice = createSlice({
@@ -22,19 +28,28 @@ const travelSlice = createSlice({
             state.allTravelData = state.allTravelData.sort((a, b) => a.startDate - b.startDate)
         },
         updateAllTravelData: (state, action) => {
-                const updatedData = state.allTravelData.map((item) =>
-                    item.key == action.payload?.key ? action.payload : item
-                )
-                state.allTravelData = updatedData
+            const updatedData = state.allTravelData.map((item) =>
+                item.key == action.payload?.key ? action.payload : item
+            )
+            state.allTravelData = updatedData
         },
         setState: (state) => {
             state.updateState = true;
         },
         setActiveTabBar: (state, action) => {
             state.activeTabBar = action.payload;
+        },
+        setTabBarVisible: (state, action) => {
+            state.tabBarVisible = action.payload
+        },
+        setActiveData: (state, action) => {
+            state.activeData = action.payload;
+        },
+        setActiveTravelCategory: (state, action) => {
+            state.activeTravelCategory = action.payload
         }
     }
 })
 
 export default travelSlice.reducer
-export const { updateAllTravelData, setAllTravelData, setState, setActiveTabBar } = travelSlice.actions
+export const { setActiveTravelCategory, setActiveData, setTabBarVisible, updateAllTravelData, setAllTravelData, setState, setActiveTabBar } = travelSlice.actions

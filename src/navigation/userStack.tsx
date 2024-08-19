@@ -10,19 +10,16 @@ const { width, height } = Dimensions.get("window")
 
 const UserStack = () => {
   const Tab = createBottomTabNavigator();
-  const [data, setData] = useState('home');
   const dispatch: any = useDispatch();
-  const { activeTabBar } = useSelector((state: any) => state.travel)
+  const { activeTabBar, tabBarVisible } = useSelector((state: any) => state.travel)
 
   return (
-    <Tab.Navigator
+    < Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
         tabBarActiveBackgroundColor: '#02c39a',
-        tabBarStyle: { height: height * 0.075 }
-      }}
-      screenListeners={{
+        tabBarStyle: tabBarVisible ? { height: height * 0.075 } : { height: 0 }
       }}
     >
       <Tab.Screen
@@ -81,7 +78,7 @@ const UserStack = () => {
           }
         }}
       />
-    </Tab.Navigator>
+    </Tab.Navigator >
   )
 }
 

@@ -10,6 +10,21 @@ export const styles = StyleSheet.create({
         paddingTop: height * 0.075,
         alignItems: 'center',
     },
+    createTravelBox: {
+        width: width * 0.9,
+        height: height * 0.1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        columnGap: 10,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10
+    },
+    createTravelText: {
+        fontSize: 22,
+        fontWeight: '500',
+        color: 'gray'
+    },
 
     currentTravelContainer: {
         width: width * 0.9,
@@ -45,12 +60,12 @@ export const styles = StyleSheet.create({
     flag: {
         width: width * 0.09,
         height: height * 0.03,
-        borderRadius: 5,
+        borderRadius: 2,
         marginLeft: 5,
     },
     cityText: {
         fontSize: 20,
-        fontWeight: '800',
+        fontWeight: '900',
         marginLeft: 5,
         color: '#343a40',
     },
@@ -61,11 +76,11 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         columnGap: 5,
-        paddingLeft: 7
+        paddingLeft: 7,
     },
     dateText: {
-        fontSize: 14,
-        fontWeight: '500',
+        fontSize: 15,
+        fontWeight: '600',
         color: '#343a40',
     },
     emtyBox: {
@@ -94,6 +109,15 @@ export const styles = StyleSheet.create({
         marginTop: height * 0.025,
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    weatherEmtyDataBox: {
+    },
+    weatherEmtyText: {
+        fontSize: 22,
+        fontWeight: '500',
+        color: 'gray'
     },
     weatherTopBox: {
         width: '100%',
@@ -200,7 +224,7 @@ export const styles = StyleSheet.create({
     },
     weatherBottomBox: {
         width: '100%',
-        height: '50%',
+        height: height * 0.1,
     },
     weatherWrapper: {
         width: '100%',
@@ -250,52 +274,125 @@ export const styles = StyleSheet.create({
     // MAP
     mapContainer: {
         width: width * 0.9,
-        height: height * 0.30,
+        height: height * 0.28,
         marginTop: height * 0.025,
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius : 10
+        borderRadius: 10,
     },
     mapViewContainer: {
         width: '98%',
         height: '97%',
     },
-    earthWrapperIconBox: {
-        width: height * 0.08,
-        height: height * 0.08,
+    earthWrapperIconContainer: {
+        width: height * 0.1,
+        height: height * 0.1,
         borderRadius: 50,
-        backgroundColor: '#3e5c76',
         position: 'absolute',
-        top: 5,
-        right: 5,
+        top: 0,
+        right: 0,
         zIndex: 2,
     },
-    earthIconBox: {
+    earthWrapperIconBox: {
+        position: 'absolute',
+        right: 0,
+        top: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(255,255,255,0.75)',
+        backgroundColor: '#3e5c76',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderTopLeftRadius: 50,
+        borderBottomLeftRadius: 50,
+        borderBottomRightRadius: 50,
+    },
+    earthIconBox: {
+        width: height * 0.09,
+        height: height * 0.09,
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: '#fff'
     },
     earthIcon: {
 
     },
 
-
-
     noteContainer: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         width: width * 0.9,
-        height: height * 0.175,
+        height: height * 0.195,
         marginTop: height * 0.025,
-        backgroundColor: 'rgba(255,255,255,0.75)',
-        borderRadius: 10
     },
+    noteAddBox: {
+        width: '100%',
+        height: height * 0.06,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    noteTextInputBox: {
+        width: width * 0.78,
+        height: '100%',
+    },
+    noteTextInput: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        paddingLeft: 5,
+        borderRadius: 5
+    },
+    notePlusBox: {
+        width: (width * 0.12) - height * 0.005,
+        height: '100%',
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    noteListContainer: {
+        width: '100%',
+        height: height * 0.13,
+    },
+    noteEmtyBox: {
+        width: '100%',
+        height: height * 0.13,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        borderRadius: 5,
+        position: 'absolute'
+    },
+    noteListBox: {
+        width: '100%',
+    },
+    noteWrapper: {
+        width: '100%',
+        height: height * 0.06,
+        marginBottom: height * 0.005,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 5
+    },
+    noteTextBox: {
+        width: width * 0.7,
+        height: '100%',
+        justifyContent: 'center',
+        paddingHorizontal: 5,
+    },
+    noteText: {
+        textTransform: 'capitalize',
+    },
+    noteEditBox: {
+        width: width * 0.2,
+        height: '100%',
+        flexDirection: 'row',
+    },
+    noteEditBtnBox: {
+        width: width * 0.1,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 
 
 

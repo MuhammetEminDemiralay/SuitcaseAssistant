@@ -12,10 +12,29 @@ export const styles = StyleSheet.create({
     },
     categoryContainer: {
         width: width * 0.9,
+        height: height * 0.125,
         borderRadius: 10,
         justifyContent: 'space-between',
-        height: height * 0.1,
-        marginVertical: height * 0.025
+        marginVertical: height * 0.025,
+    },
+    badgeBox: {
+        width: height * 0.025,
+        height: height * 0.025,
+        position: 'absolute',
+        top: (height * 0.025) / 4,
+        right: -1,
+        zIndex: 1,
+        borderRadius: 50,
+        backgroundColor: '#e63946',
+        elevation: 2,
+        borderWidth: 1,
+        borderColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    badgeText: {
+        color: '#fff',
+        fontSize: 12
     },
     categoryBtnBox: {
         width: (width * 0.9) / 7.5,
@@ -25,7 +44,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 15,
         borderWidth: 1,
-        borderColor: '#fff'
+        borderColor: '#fff',
     },
     contentContainer: {
         height: height * 0.65,
@@ -70,7 +89,6 @@ export const styles = StyleSheet.create({
     travelCategoryContainer: {
         width: width * 0.9,
         height: height * 0.05,
-        
     },
     travelCategoryBtn: {
         width: width * 0.29,

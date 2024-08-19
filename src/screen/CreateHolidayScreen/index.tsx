@@ -162,6 +162,7 @@ const CreateHolidayScreen = () => {
         city: targetCity,
         code: flagCode,
         key: uid,
+        notes: [],
         data: suitcaseDatas[gender][travel.item.toLocaleLowerCase()]
       }
 
