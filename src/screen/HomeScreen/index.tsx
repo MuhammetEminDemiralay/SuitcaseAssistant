@@ -9,7 +9,6 @@ import CountryFlag from 'react-native-country-flag'
 import { useNavigation } from '@react-navigation/native';
 import MapView from 'react-native-maps';
 import { LinearGradient } from 'expo-linear-gradient';
-import { mapStyle } from '../../datas/mapstyle';
 
 const { width, height } = Dimensions.get("window")
 

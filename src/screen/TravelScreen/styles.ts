@@ -9,6 +9,26 @@ export const styles = StyleSheet.create({
         backgroundColor: '#3e5c76',
         alignItems: 'center'
     },
+
+    emtyTravelBox: {
+        width: width * 0.9,
+        height: height * 0.875,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        left: width * 0.05,
+        position: 'absolute',
+        marginTop: height * 0.075,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        columnGap: 10
+    },
+    emtyTravelText: {
+        fontSize: 25,
+        fontWeight: '500',
+        color: 'gray'
+    },
+
     // 945
     mapContainer: {
         width: width * 1,
@@ -17,6 +37,12 @@ export const styles = StyleSheet.create({
     mapViewContainer: {
         width: '100%',
         height: '100%',
+    },
+    mapBorder: {
+        width: '100%',
+        height: 7,
+        position: 'absolute',
+        bottom: 0,
     },
     iconImageBox: {
         width: 35,
@@ -37,7 +63,7 @@ export const styles = StyleSheet.create({
         marginTop: height * 0.02,
         borderRadius: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     placeLeftContainer: {
         width: (width * 0.95) - ((height * 0.06) + height * 0.02),
@@ -80,13 +106,34 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 50,
         backgroundColor: 'rgba(255,255,255,0.75)',
+    },
+    headerIconBoxWrapper: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 50,
         elevation: 2
     },
     placeContentContainer: {
         width: '100%',
         height: height * 0.24,
-        borderColor: '#fff',
-        borderRadius: 10
+        borderRadius: 10,
+    },
+    emtyContentBox: {
+        width: '100%',
+        height: height * 0.23,
+        backgroundColor: 'rgba(225,225,225,0.75)',
+        borderRadius: 10,
+        marginTop: height * 0.01,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    emtyContentText: {
+        fontSize: 25,
+        fontWeight: '500',
+        color: 'gray'
     },
     placeContentBox: {
         width: '100%',
@@ -110,9 +157,9 @@ export const styles = StyleSheet.create({
     placeBtnGroupBox: {
         width: '20%',
         height: '100%',
-        flexDirection : 'row',
-        alignItems : 'center',
-        justifyContent : 'center'
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     placeBtnBox: {
 
@@ -127,7 +174,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
-        borderColor: '#fff',
         marginBottom: height * 0.006
     }
 

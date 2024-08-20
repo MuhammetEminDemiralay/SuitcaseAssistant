@@ -10,6 +10,24 @@ export const styles = StyleSheet.create({
         paddingHorizontal: width * 0.05,
         paddingVertical: height * 0.075,
     },
+    emtySuitcaseBox: {
+        width: width * 0.9,
+        height: height * 0.875,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        left: width * 0.05,
+        position: 'absolute',
+        marginTop: height * 0.075,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        columnGap : 10
+    },
+    emtySuitcaseText: {
+        fontSize: 25,
+        fontWeight: '500',
+        color: 'gray'
+    },
     categoryContainer: {
         width: width * 0.9,
         height: height * 0.125,
