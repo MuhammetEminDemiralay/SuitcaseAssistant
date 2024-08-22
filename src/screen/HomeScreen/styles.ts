@@ -4,11 +4,12 @@ const { width, height } = Dimensions.get("window")
 
 export const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: '100%',
+        width: width * 1,
+        height: height * 0.925,
         backgroundColor: '#3e5c76',
-        paddingTop: height * 0.075,
         alignItems: 'center',
+        borderWidth: 1,
+        paddingVertical: height * 0.025
     },
     createTravelBox: {
         width: width * 0.9,
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         columnGap: 10,
         borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10
+        borderBottomLeftRadius: 10,
     },
     createTravelText: {
         fontSize: 22,
@@ -34,6 +35,7 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderTopRightRadius: 50,
         borderBottomRightRadius: 50,
+        marginBottom: (height * 0.08) / 3
     },
     travelContent: {
         width: (width * 0.9) - (height * 0.1),
@@ -65,8 +67,8 @@ export const styles = StyleSheet.create({
     },
     cityText: {
         fontSize: 20,
-        fontWeight: '900',
-        marginLeft: 5,
+        fontWeight: '700',
+        marginLeft: 10,
         color: '#343a40',
     },
     date: {
@@ -106,11 +108,11 @@ export const styles = StyleSheet.create({
     weatherContainer: {
         width: width * 0.9,
         height: height * 0.22,
-        marginTop: height * 0.025,
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderRadius: 10,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: (height * 0.08) / 3
     },
     weatherEmtyDataBox: {
     },
@@ -275,11 +277,11 @@ export const styles = StyleSheet.create({
     mapContainer: {
         width: width * 0.9,
         height: height * 0.28,
-        marginTop: height * 0.025,
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
+        marginBottom: (height * 0.08) / 3
     },
     mapViewContainer: {
         width: '98%',
@@ -323,7 +325,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: width * 0.9,
         height: height * 0.195,
-        marginTop: height * 0.025,
     },
     noteAddBox: {
         width: '100%',

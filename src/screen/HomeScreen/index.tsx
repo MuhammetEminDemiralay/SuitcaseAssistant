@@ -43,6 +43,8 @@ const HomeScreen = () => {
 
 
   useEffect(() => {
+
+
     const getAllAsyncStorageData = async () => {
       const keys = await AsyncStorage.getAllKeys()
 
@@ -247,6 +249,7 @@ const HomeScreen = () => {
             </Pressable>
           }
 
+
           <FlatList
             data={allTravelData}
             renderItem={({ item, index }) => (
@@ -257,7 +260,6 @@ const HomeScreen = () => {
                     item.code &&
                     <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
                   }
-                  <Text style={styles.cityText}>{item.countryName} -</Text>
                   <Text style={styles.cityText}>{item.city.name}</Text>
                 </View>
                 <View style={styles.contentWrapper}>

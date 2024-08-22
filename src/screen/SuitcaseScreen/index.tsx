@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Dimensions, FlatList, Pressable, Text, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
 import { suitcaseDatas } from '../../datas/suitcaseData'
-import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useDispatch, useSelector } from 'react-redux';
 import CountryFlag from 'react-native-country-flag';
@@ -33,10 +33,8 @@ const SuitcaseScreen = () => {
 
 
     useEffect(() => {
-
         const fetchData = async () => {
             try {
-
                 if (activeTravelCategory == '') {
                     dispatch(setActiveTravelCategory(allTravelData[0].key))
                     if (params != undefined) {
@@ -134,8 +132,28 @@ const SuitcaseScreen = () => {
     }
 
 
+    const iconImages: any = {
+        "Swim trunks": require("../../datas/icons/Swim trunks.png"),
+        "T-shirts": require("../../datas/icons/T-shirt.png"),
+        "Colorful shirts": require("../../datas/icons/Colorful shirts.png"),
+        "Shorts": require("../../datas/icons/Shorts.png"),
+        "Swim shorts": require("../../datas/icons/Swim shorts.png"),
+        "Underwear": require("../../datas/icons/Underwear.png"),
+        "Socks": require("../../datas/icons/Socks.png"),
+        "Hat": require("../../datas/icons/Hat.png"),
+        "Light jacket": require("../../datas/icons/Light jacket.png"),
+        "Sunglasses": require("../../datas/icons/Sunglasses.png"),
+        "Beach bag": require("../../datas/icons/Beach bag.png"),
+        "Water bottle": require("../../datas/icons/Water bottle.png"),
+        "Energy drinks": require("../../datas/icons/Energy drinks.png"),
+    }
+
+
+
     return (
         <View style={styles.container}>
+
+            {/* Emty */}
             {
                 allTravelData.length == 0 &&
                 <View style={styles.emtySuitcaseBox}>
@@ -151,9 +169,13 @@ const SuitcaseScreen = () => {
                     </Pressable>
                 </View>
             }
+
+
             {
                 allTravelData.length != 0 &&
-                < View >
+                <View>
+
+                    {/* TravelCategory */}
                     <FlatList
                         data={allTravelData}
                         renderItem={({ item, index }) => (
@@ -174,6 +196,7 @@ const SuitcaseScreen = () => {
                         showsHorizontalScrollIndicator={false}
                     />
 
+                    {/* Category     */}
                     <FlatList
                         data={category}
                         renderItem={({ item, index }) => (
@@ -298,7 +321,10 @@ const SuitcaseScreen = () => {
                                                                 <Entypo name="check" size={22} color="black" />
                                                             }
                                                         </Pressable>
-                                                        <Text>{item.item}</Text>
+                                                        <View style={styles.checkBoxIconBox}>
+                                                            <Image style={styles.checkBoxIcon} source={iconImages[`${item.item}`]} />
+                                                        </View>
+                                                        <Text style={styles.checkBoxText}>{item.item}</Text>
                                                     </View>
                                                 </View>
                                             )}

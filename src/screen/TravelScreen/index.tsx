@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, } from 'react'
 import { Dimensions, FlatList, Image, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
 import MapView, { Marker } from 'react-native-maps'
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setActiveData, setActiveTabBar, setActiveTravelCategory, setAllTravelData, updateAllTravelData } from '../../redux/travelSlice';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Location from 'expo-location';
 
 const { width, height } = Dimensions.get("window")
 
@@ -19,6 +20,9 @@ const TravelScreen = () => {
 
     const dispatch: any = useDispatch();
     const navigation: any = useNavigation()
+    const [activeCoord, setActiveCoord] = useState<any>()
+
+    const [currentLocation, setCurrentLocation] = useState<any>()
 
     const [activeIndex, setActiveIndex] = useState<any>()
     const travelFlatlistRef = useRef<any>()
@@ -52,6 +56,29 @@ const TravelScreen = () => {
         if (allTravelData.length != 0) {
             travelFlatlistRef.current.scrollToItem({ item: allTravelData.find((item: any) => item.key == activeTravelCategory) })
         }
+
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                return;
+            }
+
+            let subscription = await Location.watchPositionAsync(
+                {
+                    accuracy: Location.Accuracy.BestForNavigation,
+                    timeInterval: 1000,
+                    distanceInterval: 10
+                },
+                (currentLocation) => {
+                    setCurrentLocation({ lat: currentLocation.coords.latitude, long: currentLocation.coords.longitude })
+                }
+            );
+
+            return () => {
+                subscription.remove();
+            };
+        })();
+
     }, [activeData, activeTravelCategory])
 
     const check = (itemIndex: any) => {
@@ -94,10 +121,41 @@ const TravelScreen = () => {
     }
 
 
+    const mapRef = useRef<any>();
+    const zoomActiveCoord = (item: any) => {
+        if (mapRef.current) {
+            mapRef.current.animateToRegion({
+                latitude: item.lat,
+                longitude: item.long,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+            }, 1000);
+        }
+    };
+
+
 
     return (
         <View style={styles.container}>
 
+            {/* Emty */}
+            {
+                allTravelData.length == 0 &&
+                <View style={styles.emtyTravelBox}>
+                    <Text style={styles.emtyTravelText}>Travel</Text>
+                    <Pressable
+                        onPress={createTravel}
+                    >
+                        <Ionicons
+                            name="earth"
+                            size={25}
+                            color="gray"
+                        />
+                    </Pressable>
+                </View>
+            }
+
+            {/* Map */}
             <View style={styles.mapContainer}
             >
                 {
@@ -105,6 +163,8 @@ const TravelScreen = () => {
                     <>
                         <MapView
                             style={styles.mapViewContainer}
+                            ref={mapRef}
+                            showsUserLocation={true}
                             initialRegion={{
                                 latitude: activeData.city.coord.latitude,
                                 longitude: activeData.city.coord.longitude,
@@ -117,7 +177,19 @@ const TravelScreen = () => {
                                 latitudeDelta: 0.1,
                                 longitudeDelta: 0.1
                             }}
+                            showsMyLocationButton={true}
                         >
+
+                            {
+                                // My location
+                                currentLocation != undefined &&
+                                <Marker
+                                    coordinate={{
+                                        latitude: currentLocation.lat,
+                                        longitude: currentLocation.long,
+                                    }}
+                                />
+                            }
                             {   // SEA
                                 activeData.city.placeCategory.sea != undefined && activeData.city.placeCategory.sea != null &&
                                 activeData.city.placeCategory.sea.map((item: any, index: any) => (
@@ -199,28 +271,14 @@ const TravelScreen = () => {
                                 ))
                             }
                         </MapView>
-                        <LinearGradient colors={["#3e5c76",'#fff',]} style={styles.mapBorder}></LinearGradient>
+                        <LinearGradient colors={["#3e5c76", '#fff',]} style={styles.mapBorder}></LinearGradient>
                     </>
 
                 }
             </View>
 
-            {
-                allTravelData.length == 0 &&
-                <View style={styles.emtyTravelBox}>
-                    <Text style={styles.emtyTravelText}>Suitcase</Text>
-                    <Pressable
-                        onPress={createTravel}
-                    >
-                        <Ionicons
-                            name="earth"
-                            size={25}
-                            color="gray"
-                        />
-                    </Pressable>
-                </View>
-            }
 
+            {/* Content */}
             {
                 allTravelData.length != 0 &&
                 <View style={styles.placeContainer}>
@@ -279,9 +337,22 @@ const TravelScreen = () => {
                                     <FlatList
                                         data={activeData?.city?.placeCategory?.[activeCategory]}
                                         renderItem={({ item, index }) => (
-                                            <View style={styles.placeContentBox}>
+                                            <Pressable
+                                                onPress={() => zoomActiveCoord({ lat: item.coord.latitude, long: item.coord.longitude })}
+                                                style={[
+                                                    {
+                                                        backgroundColor: item.check ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.75)'
+                                                    },
+                                                    styles.placeContentBox
+                                                ]}
+                                            >
                                                 <View style={styles.placeContentTextBox}>
-                                                    <Text style={styles.placeContentText}>{item.name}</Text>
+                                                    <Text style={[{
+                                                        color: item.check ? '#fff' : 'black',
+                                                        textDecorationLine: item.check ? 'line-through' : 'none'
+                                                    },
+                                                    styles.placeContentText
+                                                    ]}>{item.name}</Text>
                                                 </View>
                                                 <View style={styles.placeBtnGroupBox}>
                                                     <Pressable
@@ -297,7 +368,7 @@ const TravelScreen = () => {
                                                         }
                                                     </Pressable>
                                                 </View>
-                                            </View>
+                                            </Pressable>
                                         )}
                                         showsVerticalScrollIndicator={false}
                                     />

@@ -23,7 +23,6 @@ export const suitcaseDatas: DynamicObject = {
             food_and_drink: [
                 { item: "Water bottle", check: false },
                 { item: "Energy drinks", check: false },
-                { item: "Sunscreen", check: false }
             ],
             personal_care: [
                 { item: "Sunscreen", check: false },

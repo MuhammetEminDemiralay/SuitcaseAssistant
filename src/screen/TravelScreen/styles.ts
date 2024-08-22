@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.75)',
         left: width * 0.05,
         position: 'absolute',
-        marginTop: height * 0.075,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        columnGap: 10
+        columnGap: 10,
+        marginVertical: height * 0.025
     },
     emtyTravelText: {
         fontSize: 25,
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     // 945
     mapContainer: {
         width: width * 1,
-        height: height * 0.625,
+        height: height * 0.575,
     },
     mapViewContainer: {
         width: '100%',
@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: height * 0.07,
         marginTop: height * 0.01,
-        backgroundColor: 'rgba(255,255,255,0.75)',
+       
         borderRadius: 10,
         alignItems: 'center',
         flexDirection: 'row'

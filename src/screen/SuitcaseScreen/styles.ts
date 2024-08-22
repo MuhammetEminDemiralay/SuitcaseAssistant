@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         height: height * 1,
         backgroundColor: '#3e5c76',
         paddingHorizontal: width * 0.05,
-        paddingVertical: height * 0.075,
+        paddingVertical: height * 0.025
     },
     emtySuitcaseBox: {
         width: width * 0.9,
@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.75)',
         left: width * 0.05,
         position: 'absolute',
-        marginTop: height * 0.075,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        columnGap : 10
+        columnGap: 10,
+        marginVertical: height * 0.025
     },
     emtySuitcaseText: {
         fontSize: 25,
@@ -33,7 +33,8 @@ export const styles = StyleSheet.create({
         height: height * 0.125,
         borderRadius: 10,
         justifyContent: 'space-between',
-        marginVertical: height * 0.025,
+        marginTop: height * 0.02,
+        marginBottom: height * 0.01
     },
     badgeBox: {
         width: height * 0.025,
@@ -68,7 +69,6 @@ export const styles = StyleSheet.create({
         height: height * 0.65,
     },
     contentBox: {
-        borderRadius: 10,
         width: width * 0.9,
         height: '100%',
         flexDirection: 'row',
@@ -88,14 +88,13 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         alignItems: 'center',
-        justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1.5,
         borderColor: '#fff'
     },
     checkBox: {
-        width: width * 0.08,
-        height: width * 0.08,
+        width: width * 0.075,
+        height: width * 0.075,
         position: 'absolute',
         right: 3,
         top: 3,
@@ -104,20 +103,40 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    checkBoxText: {
+        width: '100%',
+        height: width * 0.075,
+        textAlign: 'center',
+        fontSize: 13,
+        fontWeight: '500'
+    },
+    checkBoxIconBox: {
+        width: '100%',
+        height: (width * 0.3) - ((width * 0.155) + 11),
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: width * 0.08 + 3,
+    },
+    checkBoxIcon: {
+        width: (width * 0.3) - ((width * 0.155) + 15),
+        height: (width * 0.3) - ((width * 0.155) + 15),
+        resizeMode: 'contain'
+    },
     travelCategoryContainer: {
         width: width * 0.9,
-        height: height * 0.05,
+        height: height * 0.06,
     },
     travelCategoryBtn: {
-        width: width * 0.29,
+        width: width * 0.43,
         height: '100%',
         borderRadius: 10,
         marginRight: width * 0.015,
         alignItems: 'center',
-        justifyContent: 'space-evenly',
         borderWidth: 1,
         borderColor: '#fff',
         flexDirection: 'row',
+        columnGap: 5,
+        paddingLeft: 20,
     },
     loadingContainer: {
         width: width * 0.9,
@@ -125,7 +144,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingHorizontal: width * 0.0075
+        paddingHorizontal: width * 0.0075,
+        marginTop: height * 0.01
     },
     loadingSubContainer: {
         width: width * 0.58,
