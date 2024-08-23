@@ -107,7 +107,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -130,14 +129,12 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Underwear", check: false },
                 { item: "Socks", check: false },
                 { item: "Raincoat", check: false },
-                { item: "Smart coat", check: false },
                 { item: "Hat", check: false },
                 { item: "Glasses", check: false },
                 { item: "Jewelry", check: false }
             ],
             food_and_drink: [
                 { item: "Water bottle", check: false },
-                { item: "Cafe or restaurant meals", check: false },
                 { item: "Snacks", check: false }
             ],
             personal_care: [
@@ -224,7 +221,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -272,21 +268,17 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Phone", check: false },
                 { item: "Charger", check: false },
                 { item: "Camera", check: false },
-                { item: "GoPro", check: false }
             ],
             health_and_first_aid: [
                 { item: "First aid kit", check: false },
                 { item: "Pain relievers", check: false },
                 { item: "Bandages", check: false },
-                { item: "Cold remedies", check: false }
             ],
             documents: [
                 { item: "ID and passport", check: false },
-                { item: "Ski pass", check: false },
                 { item: "Hotel reservation details", check: false }
             ],
             equipment: [
-                { item: "Ski equipment", check: false },
                 { item: "Ski poles", check: false },
                 { item: "Helmet", check: false },
                 { item: "Ski boots", check: false }
@@ -320,7 +312,6 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Water bottle", check: false },
                 { item: "Energy drinks", check: false },
                 { item: "Sunscreen", check: false },
-                { item: "Snacks", check: false } // Ekstra
             ],
             personal_care: [
                 { item: "Sunscreen", check: false },
@@ -411,7 +402,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -434,14 +424,12 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Underwear", check: false },
                 { item: "Socks", check: false },
                 { item: "Raincoat", check: false },
-                { item: "Smart coat", check: false },
                 { item: "Hat", check: false },
                 { item: "Glasses", check: false },
                 { item: "Jewelry", check: false }
             ],
             food_and_drink: [
                 { item: "Water bottle", check: false },
-                { item: "Cafe or restaurant meals", check: false },
                 { item: "Snacks", check: false }
             ],
             personal_care: [
@@ -528,7 +516,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -551,9 +538,9 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Thermal underwear", check: false },
                 { item: "Ski socks", check: false },
                 { item: "Ski gloves", check: false },
-                { item: "Winter hat", check: false },
+                { item: "Ski hat", check: false },
                 { item: "Ski goggles", check: false },
-                { item: "Ski helmet", check: false },
+                { item: "Helmet", check: false },
                 { item: "Neck gaiter", check: false }
             ],
             food_and_drink: [
@@ -588,7 +575,6 @@ export const suitcaseDatas: DynamicObject = {
             ],
             documents: [
                 { item: "ID and passport", check: false },
-                { item: "Ski pass", check: false },
                 { item: "Insurance documents", check: false }
             ],
             equipment: [
@@ -717,7 +703,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -740,14 +725,12 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Underwear", check: false },
                 { item: "Socks", check: false },
                 { item: "Raincoat", check: false },
-                { item: "Smart coat", check: false },
                 { item: "Hat", check: false },
                 { item: "Glasses", check: false },
                 { item: "Jewelry", check: false }
             ],
             food_and_drink: [
                 { item: "Water bottle", check: false },
-                { item: "Cafe or restaurant meals", check: false },
                 { item: "Snacks", check: false }
             ],
             personal_care: [
@@ -834,7 +817,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -857,9 +839,9 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Thermal underwear", check: false },
                 { item: "Ski socks", check: false },
                 { item: "Ski gloves", check: false },
-                { item: "Winter hat", check: false },
+                { item: "Ski hat", check: false },
                 { item: "Ski goggles", check: false },
-                { item: "Ski helmet", check: false },
+                { item: "Helmet", check: false },
                 { item: "Neck gaiter", check: false }
             ],
             food_and_drink: [
@@ -894,7 +876,6 @@ export const suitcaseDatas: DynamicObject = {
             ],
             documents: [
                 { item: "ID and passport", check: false },
-                { item: "Ski pass", check: false },
                 { item: "Insurance documents", check: false }
             ],
             equipment: [
@@ -1024,7 +1005,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -1047,14 +1027,12 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Underwear", check: false },
                 { item: "Socks", check: false },
                 { item: "Raincoat", check: false },
-                { item: "Smart coat", check: false },
                 { item: "Hat", check: false },
                 { item: "Glasses", check: false },
                 { item: "Jewelry", check: false }
             ],
             food_and_drink: [
                 { item: "Water bottle", check: false },
-                { item: "Cafe or restaurant meals", check: false },
                 { item: "Snacks", check: false }
             ],
             personal_care: [
@@ -1141,7 +1119,6 @@ export const suitcaseDatas: DynamicObject = {
             documents: [
                 { item: "ID and passport", check: false },
                 { item: "Insurance documents", check: false },
-                { item: "Camp reservation details", check: false },
                 { item: "Map and compass", check: false }
             ],
             equipment: [
@@ -1163,8 +1140,7 @@ export const suitcaseDatas: DynamicObject = {
                 { item: "Thermal underwear", check: false },
                 { item: "Ski socks", check: false },
                 { item: "Waterproof jacket", check: false },
-                { item: "Insulated jacket", check: false },
-                { item: "Hat", check: false },
+                { item: "Ski hat", check: false },
                 { item: "Gloves", check: false },
                 { item: "Ski goggles", check: false }
             ],
@@ -1200,7 +1176,6 @@ export const suitcaseDatas: DynamicObject = {
             ],
             documents: [
                 { item: "ID and passport", check: false },
-                { item: "Ski pass", check: false },
                 { item: "Insurance documents", check: false }
             ],
             equipment: [

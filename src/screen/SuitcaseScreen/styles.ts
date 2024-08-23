@@ -107,7 +107,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: width * 0.075,
         textAlign: 'center',
-        fontSize: 13,
+        fontSize: 10,
         fontWeight: '500'
     },
     checkBoxIconBox: {
@@ -127,7 +127,7 @@ export const styles = StyleSheet.create({
         height: height * 0.06,
     },
     travelCategoryBtn: {
-        width: width * 0.43,
+        width: width * 0.44,
         height: '100%',
         borderRadius: 10,
         marginRight: width * 0.015,
@@ -135,7 +135,7 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fff',
         flexDirection: 'row',
-        columnGap: 5,
+        columnGap: 8,
         paddingLeft: 20,
     },
     loadingContainer: {
@@ -186,14 +186,19 @@ export const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     flag: {
-        width: width * 0.08,
-        height: height * 0.027,
-        borderRadius: 5,
+        width: width * 0.1,
+        height: height * 0.04,
+        borderRadius: 4,
         borderWidth: 1,
         borderColor: '#fff'
     },
     travelCategoryText: {
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: '500'
+    },
+    travelDelete: {
+        position : 'absolute',
+        bottom : 4,
+        right : 4
     }
 })

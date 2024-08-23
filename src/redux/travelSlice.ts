@@ -47,9 +47,16 @@ const travelSlice = createSlice({
         },
         setActiveTravelCategory: (state, action) => {
             state.activeTravelCategory = action.payload
+        },
+        setDeleteTravel: (state, action) => {
+            state.allTravelData = state.allTravelData.filter((item: any) => item.key != action.payload);
+            state.activeData = {}
+            if (state.allTravelData.length > 1) {
+                state.activeData = state.allTravelData[0]
+            }
         }
     }
 })
 
 export default travelSlice.reducer
-export const { setActiveTravelCategory, setActiveData, setTabBarVisible, updateAllTravelData, setAllTravelData, setState, setActiveTabBar } = travelSlice.actions
+export const { setDeleteTravel, setActiveTravelCategory, setActiveData, setTabBarVisible, updateAllTravelData, setAllTravelData, setState, setActiveTabBar } = travelSlice.actions

@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Dimensions, FlatList, Image, Pressable, Text, View } from 'react-native'
+import { Alert, Dimensions, FlatList, Image, Pressable, Text, View } from 'react-native'
 import { styles } from './styles'
 import { suitcaseDatas } from '../../datas/suitcaseData'
-import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, FontAwesome6, Entypo, FontAwesome } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useDispatch, useSelector } from 'react-redux';
 import CountryFlag from 'react-native-country-flag';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { setActiveData, setActiveTabBar, setActiveTravelCategory } from '../../redux/travelSlice';
+import { setActiveData, setActiveTabBar, setActiveTravelCategory, setDeleteTravel } from '../../redux/travelSlice';
+import { iconImages } from '../../datas/iconImages';
 
 
 const { width, height } = Dimensions.get("window")
@@ -132,22 +133,31 @@ const SuitcaseScreen = () => {
     }
 
 
-    const iconImages: any = {
-        "Swim trunks": require("../../datas/icons/Swim trunks.png"),
-        "T-shirts": require("../../datas/icons/T-shirt.png"),
-        "Colorful shirts": require("../../datas/icons/Colorful shirts.png"),
-        "Shorts": require("../../datas/icons/Shorts.png"),
-        "Swim shorts": require("../../datas/icons/Swim shorts.png"),
-        "Underwear": require("../../datas/icons/Underwear.png"),
-        "Socks": require("../../datas/icons/Socks.png"),
-        "Hat": require("../../datas/icons/Hat.png"),
-        "Light jacket": require("../../datas/icons/Light jacket.png"),
-        "Sunglasses": require("../../datas/icons/Sunglasses.png"),
-        "Beach bag": require("../../datas/icons/Beach bag.png"),
-        "Water bottle": require("../../datas/icons/Water bottle.png"),
-        "Energy drinks": require("../../datas/icons/Energy drinks.png"),
-    }
 
+
+    const [activeTrash, setActiveTrash] = useState(false)
+
+    const deleteTravel = (item: any) => {
+        Alert.alert(
+            "Delete",
+            "Do you want to delete the travel?",
+            [
+                {
+                    text: 'No',
+                    onPress: () => {
+                        return
+                    }
+                },
+                {
+                    text: 'Yes',
+                    onPress: async () => {
+                        await AsyncStorage.removeItem(`${item}`)
+                        dispatch(setDeleteTravel(item))
+                    }
+                }
+
+            ])
+    }
 
 
     return (
@@ -183,12 +193,26 @@ const SuitcaseScreen = () => {
                                 key={index}
                                 onPress={() => dispatch(setActiveTravelCategory(item.key))}
                                 style={[{ backgroundColor: activeTravelCategory == item.key ? '#02c39a' : 'rgba(255,255,255,0.5)' }, styles.travelCategoryBtn]}
+                                onLongPress={() => setActiveTrash(!activeTrash)}
                             >
                                 {
                                     item.code &&
                                     <CountryFlag style={styles.flag} isoCode={item.code} size={10} />
                                 }
-                                <Text style={styles.travelCategoryText}>{item.city.name}</Text>
+                                <View>
+                                    <Text style={styles.travelCategoryText}>{item.city.name.slice(0, 15)}</Text>
+                                    <Text style={{ color: '#495057', fontSize: 13 }}>({item.travelType.item})</Text>
+                                </View>
+                                {
+                                    activeTravelCategory == item.key && activeTrash &&
+                                    <FontAwesome
+                                        style={styles.travelDelete}
+                                        name="trash"
+                                        size={24}
+                                        color="black"
+                                        onPress={() => deleteTravel(item.key)}
+                                    />
+                                }
                             </Pressable>
                         )}
                         style={styles.travelCategoryContainer}
